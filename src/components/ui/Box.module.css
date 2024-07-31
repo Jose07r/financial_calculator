@@ -1,0 +1,22 @@
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    padding: 2rem 1.5rem;
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
+    height: max-content;
+}
+
+.box:global(.form-box) {
+    width: 350px;
+}
+
+.box:global(.graphs-box) {
+    padding: 3rem 2rem;
+    overflow: hidden;
+    /* flex-grow: 1; */
+    width: clamp(300px, 100%, 60%);
+    height: 100%;
+}

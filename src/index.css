@@ -1,0 +1,56 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:wght@100..900&display=swap');
+
+:root {
+  /* Font sizes */
+  --text-sm: 1rem;
+  --text-md: 1.2rem;
+  --text-lg: 1.5rem;
+
+  --white: #FAFAFA;
+  --color-primary: #2EC9B7;
+  --color-secondary: #118AB2;
+  --color-terciary: #B856A2;
+  --text-dark: #4C707C;
+  --text-secondary: #74A5B5;
+  --input-bg: rgba(17, 138, 178, 0.05);
+  --color-chart-1: #29E6D0;
+  --color-chart-2: #33e4ff;
+  --color-chart-3: #84BDE0;
+
+  /* Shadows */
+  --box-shadow: 0 0 10px 2px rgba(76, 112, 124, .25);
+  --slider-handle-shadow: 0 0 0 4px rgba(17, 138, 178, 0.15);
+  --input-focus-shadow: 0 0 4px 2px rgba(17, 138, 178, 0.25);
+}
+
+* {
+  font-family: "Fredoka", sans-serif;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--white);
+  background-image: url('/body_bg.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media screen and (max-width:540px) {
+  * {
+    font-size: 12px;
+  }
+}

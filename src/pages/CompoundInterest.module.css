@@ -1,0 +1,41 @@
+.main {
+    width: 100%;
+    max-width: 1240px;
+    flex-grow: 1;
+    padding: 2.5rem;
+    margin: auto;
+}
+
+.h1 {
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: start;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.text_intro {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: var(--text-md);
+    width: 100%;
+    max-width: 850px;
+    letter-spacing: .5px;
+    margin: 2.5rem 0;
+}
+
+.text_intro>span {
+    font-size: var(--text-md);
+    color: var(--text-dark);
+}
+
+.box_container {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+    gap: 2rem;
+}

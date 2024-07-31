@@ -1,0 +1,6 @@
+.starting_message {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: .8;
+}
