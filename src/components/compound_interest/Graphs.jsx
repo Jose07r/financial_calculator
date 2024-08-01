@@ -70,7 +70,7 @@ function Graphs() {
         </div>
       </div>
       <h3 className={styles['graph_title']}>
-        Projection for {yearsOfInvesting} years
+        Projection for {results.yearly[results.yearly.length - 1].year} years
       </h3>
       {graphType === 'barChart' ? (
         <BarChart breakdownChoice={breakdownChoice} />

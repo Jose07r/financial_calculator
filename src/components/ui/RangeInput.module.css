@@ -1,8 +1,10 @@
 .container {
     display: flex;
     flex-direction: column;
+    flex-grow: 2;
+    flex-basis: 250px;
     gap: .8rem;
-    width: 100%;
+    max-width: 100%;
 }
 
 /* Labels */
@@ -10,6 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: .5rem;
 }
 
 .input_label {

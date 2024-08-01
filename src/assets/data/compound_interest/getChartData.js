@@ -1,6 +1,19 @@
 import { formatNumberWithCommas } from '@/utils/formatNumber';
 
-export default function getChartData(data, breakdownChoice, yearsOfInvesting) {
+export default function getChartData(data, breakdownChoice) {
+  // Responsive fonts
+  let fontSize = 10;
+
+  if (window.innerWidth > 540) {
+    fontSize = 12;
+  }
+  if (window.innerWidth > 760) {
+    fontSize = 14;
+  }
+  if (window.innerWidth > 1204) {
+    fontSize = 16;
+  }
+
   const chartData = {
     labels: data.map((obj) =>
       breakdownChoice === 'yearly' ? obj.year : obj.month
@@ -54,32 +67,62 @@ export default function getChartData(data, breakdownChoice, yearsOfInvesting) {
         itemSort: function (a, b) {
           return b.datasetIndex - a.datasetIndex;
         },
-        padding: 12,
+        padding: window.innerWidth > 760 ? 8 : 6,
         borderColor: '#74A5B5',
         borderWidth: 2,
         backgroundColor: '#FAFAFA',
         titleColor: '#4C707C',
-        titleFont: { weight: 'bold', size: 14 },
+        titleFont: {
+          family: "'Fredoka', 'sans-serif'",
+          weight: 700,
+          size: fontSize - 2,
+        },
         titleAlign: 'center',
+        titleMarginBottom: 4,
         bodyColor: '#74A5B5',
-        bodyFont: { weight: 'bold', size: 14 },
-        bodySpacing: 4,
-        boxPadding: 3,
-        footerColor: '#118AB2',
+        bodyFont: {
+          family: "'Fredoka', 'sans-serif'",
+          weight: 600,
+          size: fontSize - 2,
+        },
+        bodySpacing: window.innerWidth > 760 ? 6 : 4,
+        boxPadding: window.innerWidth > 760 ? 6 : 2,
+        footerColor: 'rgba(17, 138, 178, 0.7',
         footerAlign: 'center',
-        footerFont: { weight: 'bold', size: 13 },
-        footerMarginTop: 10,
+        footerFont: {
+          family: "'Fredoka', 'sans-serif'",
+          weight: 600,
+          size: fontSize,
+        },
+        footerMarginTop: window.innerWidth > 760 ? 8 : 6,
       },
       legend: {
         position: 'bottom',
         onClick: (e, legendItem, legend) => {
           e.defaultPrevented = true;
         },
+        labels: {
+          boxWidth: 25,
+          font: {
+            family: "'Fredoka', 'sans-serif'",
+            weight: 500,
+            size: fontSize,
+          },
+          color: 'rgba(76, 112, 124, 0.6)',
+        },
       },
     },
     scales: {
       x: {
         stacked: true,
+        ticks: {
+          font: {
+            family: "'Fredoka', 'sans-serif'",
+            weight: 600,
+            size: fontSize,
+          },
+          color: '#74A5B5',
+        },
       },
       y: {
         stacked: true,
@@ -87,6 +130,12 @@ export default function getChartData(data, breakdownChoice, yearsOfInvesting) {
           callback: function (value) {
             return `$${formatNumberWithCommas(value)}`;
           },
+          font: {
+            family: "'Fredoka', 'sans-serif'",
+            weight: 600,
+            size: fontSize,
+          },
+          color: '#74A5B5',
         },
       },
     },
@@ -97,7 +146,7 @@ export default function getChartData(data, breakdownChoice, yearsOfInvesting) {
     interaction: {
       mode: 'index',
     },
-    aspectRatio: 2 / 1,
+    aspectRatio: window.innerWidth > 840 ? 2 / 1 : 3 / 2,
     responsive: true,
     maintainAspectRatio: true,
   };

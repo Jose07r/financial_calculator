@@ -33,8 +33,7 @@ function BarChart({ breakdownChoice }) {
   // Get chart formatted data
   const { chartData, chartOptions } = getChartData(
     results[breakdownChoice],
-    breakdownChoice,
-    results.yearly.length
+    breakdownChoice
   );
 
   return (

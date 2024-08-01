@@ -10,13 +10,12 @@
 }
 
 .box:global(.form-box) {
-    width: 350px;
+    width: 100%;
 }
 
 .box:global(.graphs-box) {
-    padding: 3rem 2rem;
+    padding: 3rem 2rem 0 2rem;
     overflow: hidden;
-    /* flex-grow: 1; */
-    width: clamp(300px, 100%, 60%);
-    height: 100%;
+    width: 100%;
+    max-width: 980px;
 }

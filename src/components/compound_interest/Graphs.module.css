@@ -9,7 +9,7 @@
 }
 
 .graph_title {
-    font-size: 1rem;
+    font-size: var(--text-sm);
     letter-spacing: 1px;
     color: var(--text-dark);
     margin: 0;

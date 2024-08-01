@@ -1,6 +1,6 @@
 .footer {
     background: linear-gradient(to bottom, var(--color-primary) 0%, #2AB8A7 100%);
-    padding: 2rem 2.5rem;
+    padding: 2rem;
 }
 
 .footer * {
@@ -12,7 +12,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(250, 250, 250, 0.25);
     margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
 .portfolio_link {
@@ -22,11 +24,11 @@
 }
 
 .portfolio_link:global(>b) {
-    font-size: 1.2rem;
+    font-size: var(--text-md);
 }
 
 .portfolio_link:global(>a) {
-    font-size: 1rem;
+    font-size: var(--text-sm);
     font-weight: 500;
     text-decoration: none;
     transition: text-decoration .3s ease;
@@ -41,7 +43,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1.2rem;
 }
 
 .social_link {
@@ -54,13 +56,12 @@
 }
 
 .social_image {
-    width: 1.8rem;
+    width: 1.5rem;
 }
 
 .copyright {
     display: block;
-    font-size: 1rem;
-    letter-spacing: 1px;
+    font-size: var(--text-sm);
     margin: auto;
     text-align: center;
     opacity: 0.5;

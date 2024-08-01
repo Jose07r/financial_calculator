@@ -9,14 +9,15 @@
 .results_title {
     color: var(--text-dark);
     margin: 0 0 1.5rem 0;
-    font-size: 1.5rem;
+    font-size: var(--text-lg);
 }
 
 /* Fact cards */
 .cards_container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
 }
@@ -24,15 +25,12 @@
 .card_item {
     --color-primary: var(--color-chart-3);
     --color-primary-darker: #4285AD;
-    flex-grow: 1;
     display: flex;
     align-items: center;
     background-color: var(--white);
     border-left: 10px solid var(--color-primary);
     padding: 1rem 1.5rem;
     box-shadow: 2px 2px 4px 0px rgba(76, 112, 124, .15);
-    min-width: 325px;
-    max-width: 375px;
 }
 
 .card_item:nth-child(2) {
@@ -56,45 +54,44 @@
 
 .card_title {
     color: var(--color-primary-darker);
-    font-size: 1rem;
+    font-size: var(--text-sm);
     margin: 0 0 .5rem 0;
 }
 
 .card_text {
     color: var(--color-primary);
-    font-size: 1.5rem;
+    font-size: var(--text-lg);
 }
 
 /* Balance */
 .balance_container {
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: center;
-    margin-top: 2.5rem;
+    grid-template-columns: max-content max-content;
+    margin: 2rem 0;
 }
 
 .balance_container:global(>span) {
-    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .balance_image {
-    width: 100%;
-    max-width: 90px;
+    width: clamp(65px, 12vw, 100px)
 }
 
 .balance_body {
-    margin-left: 1.5rem;
+    margin-left: 1rem;
 }
 
 .balance_title {
-    color: #8A3276;
-    font-size: 1.2rem;
+    color: #a64890;
+    font-size: var(--text-md);
     margin: 0 0 .5rem 0;
 }
 
 .balance_text {
     color: var(--color-terciary);
-    font-size: 2.4rem;
+    font-size: 2rem;
 }

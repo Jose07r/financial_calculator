@@ -4,20 +4,22 @@
 
 :root {
   /* Font sizes */
+  --text-xs: .6rem;
   --text-sm: 1rem;
   --text-md: 1.2rem;
   --text-lg: 1.5rem;
 
+  /* Colors */
   --white: #FAFAFA;
-  --color-primary: #2EC9B7;
-  --color-secondary: #118AB2;
-  --color-terciary: #B856A2;
-  --text-dark: #4C707C;
-  --text-secondary: #74A5B5;
+  --color-primary: rgb(46, 201, 183);
+  --color-secondary: rgb(17, 138, 178);
+  --color-terciary: rgb(184, 86, 162);
+  --text-dark: rgb(76, 112, 124);
+  --text-secondary: rgb(116, 165, 181);
   --input-bg: rgba(17, 138, 178, 0.05);
-  --color-chart-1: #29E6D0;
-  --color-chart-2: #33e4ff;
-  --color-chart-3: #84BDE0;
+  --color-chart-1: rgb(41, 230, 208);
+  --color-chart-2: rgb(51, 228, 255);
+  --color-chart-3: rgb(132, 189, 224);
 
   /* Shadows */
   --box-shadow: 0 0 10px 2px rgba(76, 112, 124, .25);
@@ -27,7 +29,7 @@
 
 * {
   font-family: "Fredoka", sans-serif;
-  font-size: 18px;
+  font-size: 12px;
   box-sizing: border-box;
 }
 
@@ -39,8 +41,7 @@ body {
   background-size: cover;
   margin: 0;
   box-sizing: border-box;
-  width: 100%;
-  min-height: 100vh;
+  min-width: 300px;
 }
 
 #root {
@@ -49,8 +50,21 @@ body {
   min-height: 100vh;
 }
 
-@media screen and (max-width:540px) {
+@media screen and (min-width:540px) {
   * {
-    font-size: 12px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:760px) {
+  * {
+    font-size: 16px;
+  }
+}
+
+
+@media screen and (min-width:1204px) {
+  * {
+    font-size: 18px;
   }
 }

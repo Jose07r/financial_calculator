@@ -5,11 +5,11 @@ const selectStyles = {
   placeholder: (baseStyles, state) => ({
     ...baseStyles,
     color: '#4C707C',
+    fontSize: '.8rem',
   }),
   control: (baseStyles, state) => ({
     display: 'flex',
     cursor: 'pointer',
-    fontSize: '1rem',
     borderRadius: 4,
     boxShadow: 'inset 0 0 2px 1px rgba(17, 138, 178, 0.35)',
     padding: '2px 4px',
@@ -23,6 +23,7 @@ const selectStyles = {
     justifyContent: 'center',
     padding: 0,
     color: '#4C707C',
+    width: '1rem',
   }),
   indicatorSeparator: (baseStyles, state) => ({
     ...baseStyles,
@@ -32,7 +33,6 @@ const selectStyles = {
   }),
   menu: (baseStyles, state) => ({
     ...baseStyles,
-    fontSize: '1rem',
     maxWidth: '100px',
     boxShadow: '0 0 4px 2px rgba(76, 112, 124, .25)',
     borderRadius: 4,
@@ -45,6 +45,7 @@ const selectStyles = {
   option: (baseStyles, state) => ({
     ...baseStyles,
     backgroundColor: state.isFocused ? 'rgba(97, 234, 255, 0.1)' : '#FAFAFA',
+    fontSize: '.8rem',
     color: state.isFocused ? '#118AB2' : '#74A5B5',
   }),
 };

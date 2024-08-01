@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 1240px;
     flex-grow: 1;
-    padding: 2.5rem;
+    padding: 1rem 1rem 0 1rem;
     margin: auto;
 }
 
@@ -11,7 +11,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: start;
-    font-size: 1.8rem;
+    font-size: var(--text-lg);
     font-weight: 600;
     margin: 0;
 }
@@ -23,7 +23,7 @@
     width: 100%;
     max-width: 850px;
     letter-spacing: .5px;
-    margin: 2.5rem 0;
+    margin: 2rem 0;
 }
 
 .text_intro>span {
@@ -36,6 +36,20 @@
     align-items: start;
     justify-content: center;
     flex-wrap: wrap;
+    background-color: rgba(116, 165, 181, 0.05);
+    box-shadow: inset 0 0 1rem 1rem rgba(116, 165, 181, 0.15);
+    border-radius: 1rem;
     max-width: 100%;
     gap: 2rem;
+    padding: 1rem 1.5em;
+}
+
+@media screen and (min-width:540px) {
+    .main {
+        padding: 1.8rem 1.8rem 0 1.8rem;
+    }
+
+    .box_container {
+        padding: 1.5rem;
+    }
 }

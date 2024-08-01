@@ -26,33 +26,35 @@ function BasicTable({ data, columns }) {
   });
 
   return (
-    <div className={styles['table_container']}>
-      <table className={styles['table']}>
-        <thead className={styles['table_head']}>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody className={styles['table_body']}>
-          {table.getRowModel().rows.map((row) => [
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>,
-          ])}
-        </tbody>
+    <div className={styles[['container']]}>
+      <div className={styles['table_container']}>
+        <table className={styles['table']}>
+          <thead className={styles['table_head']}>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id}>
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody className={styles['table_body']}>
+            {table.getRowModel().rows.map((row) => [
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>,
+            ])}
+          </tbody>
+        </table>
         <div className={styles['table_pagination']}>
           <button
             disabled={!table.getCanPreviousPage()}
@@ -81,7 +83,7 @@ function BasicTable({ data, columns }) {
             &gt;&gt;
           </button>
         </div>
-      </table>
+      </div>
     </div>
   );
 }
