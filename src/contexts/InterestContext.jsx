@@ -64,6 +64,7 @@ function reducer(state, action) {
         state.yearsOfInvesting,
         state.annualInterest / 100 //Convert percentage to decimal
       );
+
       return {
         ...state,
         results: {

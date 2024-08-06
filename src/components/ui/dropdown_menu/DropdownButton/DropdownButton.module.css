@@ -1,0 +1,39 @@
+.dropdown_btn {
+    display: flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    background-color: transparent;
+    color: var(--color-secondary);
+    padding: .6rem;
+    transition: opacity .3s ease;
+    max-width: 40vw;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity .3s ease;
+}
+
+.dropdown_btn:hover {
+    opacity: 1;
+}
+
+.dropdown_btn_text {
+    margin: 0;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.dropdown_btn_text:global(>span) {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+.toggle_icon {
+    display: flex;
+    align-items: center;
+    margin-left: .5rem;
+}

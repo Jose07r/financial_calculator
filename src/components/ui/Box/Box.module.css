@@ -1,0 +1,23 @@
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    padding: 2rem 1.5rem;
+    box-shadow: var(--box-shadow);
+    border-radius: 1rem;
+}
+
+.box:global(.form-box) {
+    flex-grow: 1;
+    flex-basis: 300px;
+    height: max-content;
+}
+
+.box:global(.graphs-box) {
+    flex-grow: 1;
+    flex-basis: 600px;
+    padding: 3rem 2rem 0 2rem;
+    overflow: hidden;
+    width: 100%;
+}

@@ -1,0 +1,9 @@
+.bar_chart_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 650px;
+    height: 100%;
+    padding-bottom: 2rem;
+}

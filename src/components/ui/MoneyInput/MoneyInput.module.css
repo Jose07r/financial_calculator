@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 200px;
+    gap: .8rem;
+    max-width: 100%;
+}
+
+.input_label {
+    display: block;
+    color: var(--text-dark);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.input_container {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background-color: var(--input-bg);
+    padding: .5rem;
+    border-radius: .5rem;
+    height: auto;
+    box-sizing: border-box;
+    box-shadow: 0 0 4px 2px transparent;
+    opacity: .75;
+    transition: box-shadow .6s ease, opacity .6s ease;
+}
+
+.input_container:focus-within {
+    box-shadow: var(--input-focus-shadow);
+    opacity: 1;
+}
+
+.money_symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.money_symbol>img {
+    width: 25px;
+}
+
+.input {
+    color: var(--color-secondary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--text-secondary);
+}

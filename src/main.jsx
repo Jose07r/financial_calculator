@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import ErrorPage from '@pages/ErrorPage';
-import CompoundInterest from '@pages/CompoundInterest';
+import CompoundInterest from '@pages/CompoundInterest/CompoundInterest';
 import { Navigate } from 'react-router-dom';
 
 const router = createBrowserRouter([

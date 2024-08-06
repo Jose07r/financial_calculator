@@ -146,7 +146,7 @@ export default function getChartData(data, breakdownChoice) {
     interaction: {
       mode: 'index',
     },
-    aspectRatio: window.innerWidth > 840 ? 2 / 1 : 3 / 2,
+    aspectRatio: 3 / 2,
     responsive: true,
     maintainAspectRatio: true,
   };

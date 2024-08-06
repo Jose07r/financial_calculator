@@ -1,0 +1,139 @@
+.results_container {
+    margin-top: 2.5rem;
+}
+
+.results_container * {
+    font-family: "Inter", sans-serif;
+}
+
+.results_title {
+    color: var(--text-dark);
+    margin: 0 0 1.5rem 0;
+    font-size: var(--text-lg);
+}
+
+/* Fact cards */
+.cards_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.card_item {
+    --color-primary: var(--color-chart-3);
+    --color-primary-darker: #4285AD;
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border-left: 10px solid var(--color-primary);
+    padding: 1rem 1.5rem;
+    box-shadow: 2px 2px 4px 0px rgba(76, 112, 124, .15);
+    opacity: 0;
+    transform: translate(-10%);
+}
+
+.card_item:global(.animate) {
+    animation: 300ms linear forwards slide-to-right;
+}
+
+.card_item:nth-child(1) {
+    animation-delay: 100ms;
+}
+
+.card_item:nth-child(2) {
+    --color-primary: var(--color-chart-2);
+    --color-primary-darker: #0bb8d2;
+    animation-delay: 200ms;
+}
+
+.card_item:nth-child(3) {
+    --color-primary: var(--color-chart-1);
+    --color-primary-darker: #30C2B1;
+    animation-delay: 300ms;
+}
+
+@keyframes slide-to-right {
+    from {
+        transform: translateX(-5%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.card_body {
+    margin-left: 1.5rem;
+}
+
+.card_image {
+    width: 100%;
+    max-width: 50px;
+}
+
+.card_title {
+    color: var(--color-primary-darker);
+    font-size: var(--text-sm);
+    margin: 0 0 .5rem 0;
+}
+
+.card_text {
+    color: var(--color-primary);
+    font-size: var(--text-lg);
+}
+
+/* Balance */
+.balance_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto 0 auto;
+    width: max-content;
+    transform: translateY(-5%);
+    opacity: 0;
+}
+
+.balance_container:global(.animate) {
+    animation: 300ms 700ms linear forwards slide-down;
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-5%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.balance_container:global(>span) {
+    align-items: center;
+    justify-content: center;
+}
+
+.balance_image {
+    width: clamp(65px, 12vw, 100px)
+}
+
+.balance_body {
+    margin-left: 1rem;
+}
+
+.balance_title {
+    color: #a64890;
+    font-size: var(--text-md);
+    margin: 0 0 .5rem 0;
+}
+
+.balance_text {
+    color: var(--color-terciary);
+    font-size: 2rem;
+}
