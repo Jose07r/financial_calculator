@@ -1,8 +1,8 @@
 import Box from '@components/ui/Box/Box';
-import Graphs from '@components/compound_interest/Graphs/Graphs';
+import Graphs from '@components/savings_goal/Graphs/Graphs';
 import Loader from '@components/ui/Loader/Loader';
 
-import styles from '@components/compound_interest/ResultsGraph/ResultsGraph.module.css';
+import styles from '@components/savings_goal/ResultsGraph/ResultsGraph.module.css';
 
 function ResultsGraph({ isLoading, getContext }) {
   let dataResults = null;

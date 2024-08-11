@@ -2,21 +2,17 @@ import Box from '@components/ui/Box/Box';
 import MoneyInput from '@components/ui/MoneyInput/MoneyInput';
 import RangeInput from '@components/ui/RangeInput/RangeInput';
 import Button from '@components/ui/Button/Button';
-import { useInterestContext } from '@/contexts/InterestContext';
 
 import styles from '@components/compound_interest/InterestForm/InterestForm.module.css';
 
-function InterestForm({ setIsLoading }) {
+function InterestForm({ setIsLoading, getContext }) {
   const {
     startingAmount,
     monthlyContribution,
     yearsOfInvesting,
     annualInterest,
     dispatch,
-  } = useInterestContext();
-
-  const formattedStartingAmount = startingAmount.formattedValue;
-  const formattedMonthlyContribution = monthlyContribution.formattedValue;
+  } = getContext();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -33,7 +29,7 @@ function InterestForm({ setIsLoading }) {
         <div className={styles['inputs_container']}>
           <MoneyInput
             labelText="Starting amount"
-            inputValue={formattedStartingAmount}
+            inputValue={startingAmount.formattedValue}
             onChangeFn={(e) => {
               dispatch({
                 type: 'onStartingAmountChange',
@@ -43,7 +39,7 @@ function InterestForm({ setIsLoading }) {
           />
           <MoneyInput
             labelText="Monthly contribution"
-            inputValue={formattedMonthlyContribution}
+            inputValue={monthlyContribution.formattedValue}
             onChangeFn={(e) => {
               dispatch({
                 type: 'onMonthlyContributionChange',

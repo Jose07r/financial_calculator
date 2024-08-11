@@ -27,7 +27,10 @@ function NavBar() {
               >
                 Compound Interest Calculator
               </NavLink>
-              <NavLink className={styles['nav_link']} to="/">
+              <NavLink
+                className={styles['nav_link']}
+                to="/savings-goal-calculator"
+              >
                 Savings Goal Calculator
               </NavLink>
               <NavLink className={styles['nav_link']} to="/">

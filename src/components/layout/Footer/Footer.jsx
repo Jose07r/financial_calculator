@@ -1,6 +1,6 @@
-import linkedInIcon from '@images/icons/linkedIn-icon.svg';
-import instagramIcon from '@images/icons/instagram-icon.svg';
-import githubIcon from '@images/icons/github-icon.svg';
+import { FaLinkedin } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 
 import styles from '@components/layout/Footer/Footer.module.css';
 
@@ -14,31 +14,13 @@ function Footer() {
         </div>
         <div className={styles['social_media']}>
           <a className={styles['social_link']} href="/">
-            <span>
-              <img
-                className={styles['social_image']}
-                src={linkedInIcon}
-                alt="LinkedIn icon link"
-              />
-            </span>
+            <FaLinkedin />
           </a>
           <a className={styles['social_link']} href="/">
-            <span>
-              <img
-                className={styles['social_image']}
-                src={instagramIcon}
-                alt="Instagram icon link"
-              />
-            </span>
+            <FaInstagram />
           </a>
           <a className={styles['social_link']} href="/">
-            <span>
-              <img
-                className={styles['social_image']}
-                src={githubIcon}
-                alt="Github icon link"
-              />
-            </span>
+            <FaGithub />
           </a>
         </div>
       </div>

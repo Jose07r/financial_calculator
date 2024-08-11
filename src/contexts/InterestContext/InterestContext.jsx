@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import { formatNumberWithCommas, parseNumber } from '@/utils/formatNumber';
-import calculateInterest from '@/utils/calculateCompoundInterest';
+import calculateInterest from '@/contexts/InterestContext/calculateCompoundInterest';
 
 const InterestContext = createContext(null);
 
@@ -62,13 +62,15 @@ function reducer(state, action) {
         state.startingAmount.raw,
         state.monthlyContribution.raw,
         state.yearsOfInvesting,
-        state.annualInterest / 100 //Convert percentage to decimal
+        state.annualInterest
       );
 
       return {
         ...state,
         results: {
-          ...data,
+          data: {
+            ...data,
+          },
         },
       };
     }

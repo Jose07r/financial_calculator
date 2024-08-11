@@ -1,0 +1,37 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    max-height: fit-content;
+}
+
+.inputs_container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    width: 100%;
+}
+
+.multi_input {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+.multi_input:global(>.radio_children) {
+    padding-left: 1rem;
+    flex-basis: auto;
+}
+
+.multi_input:global(>.radio_children label),
+.multi_input:global(>.radio_children >div>label),
+.multi_input:global(>.radio_children >div>span) {
+    color: var(--text-secondary);
+    font-size: .95rem;
+}

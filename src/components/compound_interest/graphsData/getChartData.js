@@ -69,7 +69,7 @@ export default function getChartData(data, breakdownChoice) {
         },
         padding: window.innerWidth > 760 ? 8 : 6,
         borderColor: '#74A5B5',
-        borderWidth: 2,
+        borderWidth: window.innerWidth > 760 ? 2 : 1,
         backgroundColor: '#FAFAFA',
         titleColor: '#4C707C',
         titleFont: {
@@ -146,7 +146,7 @@ export default function getChartData(data, breakdownChoice) {
     interaction: {
       mode: 'index',
     },
-    aspectRatio: 3 / 2,
+    aspectRatio: 5 / 3,
     responsive: true,
     maintainAspectRatio: true,
   };

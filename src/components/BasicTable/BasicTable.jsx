@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-table';
 import { useState } from 'react';
 
-import styles from '@components/compound_interest/BasicTable/BasicTable.module.css';
+import styles from '@components/BasicTable/BasicTable.module.css';
 
 function BasicTable({ data, columns }) {
   const [pagination, setPagination] = useState({

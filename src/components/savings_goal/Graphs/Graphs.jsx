@@ -1,44 +1,22 @@
 import { useState } from 'react';
-import Select from 'react-select';
-import selectStyles from '@components/compound_interest/Graphs/selectInputStyles.js';
 import BarChart from '@components/BarChart/BarChart';
 import BasicTable from '@components/BasicTable/BasicTable';
 
-import getChartData from '@components/compound_interest/graphsData/getChartData';
-import getTableColumns from '@components/compound_interest/graphsData/getTableColumns';
+import getChartData from '@components/savings_goal/graphsData/getChartData';
+import getTableColumns from '@components/savings_goal/graphsData/getTableColumns';
 
 import styles from '@components/compound_interest/Graphs/Graphs.module.css';
 
 function Graphs({ results }) {
-  const [breakdownChoice, setBreakdownChoice] = useState('yearly');
   const [graphType, setGraphType] = useState('barChart');
+  const data = results.monthly;
 
   // Get chart formatted data
-  const { chartData, chartOptions } = getChartData(
-    results[breakdownChoice],
-    breakdownChoice
-  );
-
-  // Select options
-  const selectOptions = [
-    { value: 'yearly', label: 'yearly' },
-    { value: 'monthly', label: 'monthly' },
-  ];
+  const { chartData, chartOptions } = getChartData(data);
 
   return (
     <div className={styles['graphs_container']}>
       <div className={styles['controls_container']}>
-        {/* Switch monthly and yearly info  */}
-        <Select
-          value={breakdownChoice}
-          onChange={(selectedValue) => setBreakdownChoice(selectedValue.value)}
-          placeholder={breakdownChoice}
-          isSearchable={false}
-          className="react_select_container"
-          classNamePrefix="react_select"
-          options={selectOptions}
-          styles={selectStyles}
-        />
         {/* Switch graph display */}
         <div className={styles['graph_type_container']}>
           <button
@@ -75,16 +53,11 @@ function Graphs({ results }) {
           </button>
         </div>
       </div>
-      <h3 className={styles['graph_title']}>
-        Projection for {results.yearly[results.yearly.length - 1].year} years
-      </h3>
+      <h3 className={styles['graph_title']}>Savings growth</h3>
       {graphType === 'barChart' ? (
         <BarChart chartData={chartData} chartOptions={chartOptions} />
       ) : (
-        <BasicTable
-          data={results[breakdownChoice]}
-          columns={getTableColumns(breakdownChoice)}
-        />
+        <BasicTable data={data} columns={getTableColumns()} />
       )}
     </div>
   );

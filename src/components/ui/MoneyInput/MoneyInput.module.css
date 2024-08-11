@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    flex-basis: 200px;
+    flex-basis: 300px;
     gap: .8rem;
     max-width: 100%;
 }
@@ -10,7 +10,7 @@
 .input_label {
     display: block;
     color: var(--text-dark);
-    font-size: 1rem;
+    font-size: var(--text-sm);
     font-weight: 600;
 }
 
@@ -39,8 +39,9 @@
     justify-content: center;
 }
 
-.money_symbol>img {
-    width: 25px;
+.money_symbol>svg {
+    fill: var(--text-secondary);
+    font-size: var(--text-md);
 }
 
 .input {
@@ -55,6 +56,10 @@
     width: 100%;
     padding: 0;
     outline: none;
+}
+
+:global(.radio_children) .input {
+    color: var(--text-secondary);
 }
 
 .input::placeholder {

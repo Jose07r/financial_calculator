@@ -1,16 +1,17 @@
-import walletIcon from '@images/icons/results-wallet.svg';
-import contributionsIcon from '@images/icons/results-contributions.svg';
-import interestIcon from '@images/icons/results-interest-projection.svg';
-import balanceIcon from '@images/icons/results-balance.svg';
-import { useInterestContext } from '@/contexts/InterestContext';
+import walletIcon from '@images/results-wallet.svg';
+import contributionsIcon from '@images/results-contributions.svg';
+import interestIcon from '@images/results-interest-projection.svg';
+import balanceIcon from '@images/results-balance.svg';
 import { formatNumberWithCommas } from '@/utils/formatNumber';
 
 import styles from '@components/compound_interest/ResultsSummary/ResultsSummary.module.css';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 
-function ResultsSummary({ isLoading }) {
-  const { startingAmount, results } = useInterestContext();
+function ResultsSummary({ isLoading, getContext }) {
+  const { startingAmount, results } = getContext();
+  let dataResults = null;
+  if (results) dataResults = results.data;
   const [resultsIsVisible, setResultsIsVisible] = useState(false);
 
   const resultsRef = useRef(null);
@@ -20,11 +21,10 @@ function ResultsSummary({ isLoading }) {
     const resultsObserver = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        console.log(entry);
         setResultsIsVisible(entry.isIntersecting);
         if (entry.isIntersecting) resultsObserver.unobserve(entry.target);
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (resultsRef.current) resultsObserver.observe(resultsRef.current);
@@ -32,17 +32,17 @@ function ResultsSummary({ isLoading }) {
     return () => {
       setResultsIsVisible(false);
     };
-  }, [results, isLoading]);
+  }, [dataResults, isLoading]);
 
   // Card Item Info
-  const accruedInterest = results
-    ? results.yearly[results.yearly.length - 1].accrued_interest
+  const accruedInterest = dataResults
+    ? dataResults.yearly[dataResults.yearly.length - 1].accrued_interest
     : null;
-  const accruedContributions = results
-    ? results.yearly[results.yearly.length - 1].accrued_contributions
+  const accruedContributions = dataResults
+    ? dataResults.yearly[dataResults.yearly.length - 1].accrued_contributions
     : null;
-  const totalBalance = results
-    ? results.yearly[results.yearly.length - 1].balance
+  const totalBalance = dataResults
+    ? dataResults.yearly[dataResults.yearly.length - 1].balance
     : null;
 
   if (isLoading) {
@@ -50,10 +50,10 @@ function ResultsSummary({ isLoading }) {
   } else {
     return (
       <>
-        {results && (
+        {dataResults && (
           <div className={styles['results_container']}>
             {/* Main Investment Performance */}
-            <h2 className={styles['results_title']}>Results</h2>
+            <h2 className={styles['results_title']}>Results:</h2>
             {/* Cards */}
             <div className={styles['cards_container']} ref={resultsRef}>
               <div

@@ -1,15 +1,15 @@
-import moneySymbol from '@images/icons/money-symbol.svg';
+import { FaDollarSign } from 'react-icons/fa';
 import styles from '@components/ui/MoneyInput/MoneyInput.module.css';
 
-function MoneyInput({ labelText, inputValue, onChangeFn }) {
+function MoneyInput({ customClass = '', labelText, inputValue, onChangeFn }) {
   return (
-    <div className={styles['container']}>
+    <div className={`${styles['container']} ${customClass}`}>
       <label htmlFor="money-input" className={styles['input_label']}>
         * {labelText}
       </label>
       <div className={styles['input_container']}>
         <span className={styles['money_symbol']}>
-          <img src={moneySymbol} alt="Money symbol" />
+          <FaDollarSign />
         </span>
         <input
           className={styles.input}

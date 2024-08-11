@@ -2,15 +2,17 @@ import styles from '@components/ui/RangeInput/RangeInput.module.css';
 import Slider from 'rc-slider';
 
 function RangeInput({
+  customClass = '',
   labelText,
   inputValue,
   valueType,
   minValue,
   maxValue,
   onChangeFn,
+  disabled,
 }) {
   return (
-    <div className={styles['container']}>
+    <div className={`${styles['container']} ${customClass}`}>
       <div className={styles['label_container']}>
         <label className={styles['input_label']} htmlFor="range-input">
           {labelText}
@@ -26,6 +28,7 @@ function RangeInput({
         onChange={(value) => onChangeFn(value)}
         startPoint={0}
         value={inputValue}
+        disabled={disabled}
         styles={{
           handle: {
             left: `${(100 / maxValue) * inputValue}%`,

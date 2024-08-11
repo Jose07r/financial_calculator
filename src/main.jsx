@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import ErrorPage from '@pages/ErrorPage';
 import CompoundInterest from '@pages/CompoundInterest/CompoundInterest';
+import SavingsGoal from '@pages/SavingsGoal/SavingsGoal';
 import { Navigate } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: 'compound-interest-calculator',
     element: <CompoundInterest />,
+  },
+  {
+    path: 'savings-goal-calculator',
+    element: <SavingsGoal />,
   },
 ]);
 

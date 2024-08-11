@@ -1,10 +1,10 @@
 .container {
     display: flex;
     flex-direction: column;
-    flex-grow: 2;
-    flex-basis: 250px;
+    flex-grow: 1;
+    flex-basis: 300px;
     gap: .8rem;
-    max-width: 100%;
+    max-width: 450px;
 }
 
 /* Labels */
@@ -51,6 +51,11 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+:global(.rc-slider-disabled) {
+    pointer-events: none;
+    opacity: 0.35;
+}
+
 :global(.rc-slider-rail) {
     position: absolute;
     width: 100%;
@@ -64,6 +69,10 @@
     height: 6px;
     background-color: var(--color-secondary);
     border-radius: 8px;
+}
+
+:global(.radio_children .rc-slider-track) {
+    background-color: var(--text-secondary);
 }
 
 :global(.rc-slider-step) {
