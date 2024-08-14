@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.2rem;
+    gap: min(1.4rem, 4vw);
 }
 
 .social_link {
@@ -58,7 +58,7 @@
 
 .social_link:global(>svg) {
     fill: var(--white);
-    font-size: var(--text-lg);
+    font-size: clamp(1rem, 3vw, 1.65rem);
 }
 
 .copyright {

@@ -7,9 +7,9 @@ import {
 import NavBar from '@components/layout/NavBar/NavBar';
 import Main from '@components/layout/Main/Main';
 import Footer from '@components/layout/Footer/Footer';
-import SavingsForm from '@components/savings_goal/SavingsForm/SavingsForm';
-import ResultsGraph from '@components/savings_goal/ResultsGraph/ResultsGraph';
-import ResultsSummary from '@components/savings_goal/ResultsSummary/ResultsSummary';
+import SavingsForm from '@pages/SavingsGoal/components/SavingsForm/SavingsForm';
+import ResultsGraph from '@pages/SavingsGoal/components/ResultsGraph/ResultsGraph';
+import ResultsSummary from '@pages/SavingsGoal/components/ResultsSummary/ResultsSummary';
 
 import styles from '@pages/Main.module.css';
 

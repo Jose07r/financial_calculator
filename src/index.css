@@ -4,12 +4,13 @@
 
 :root {
   /* Font sizes */
-  --text-xs: .6rem;
-  --text-sm: 1rem;
-  --text-md: 1.2rem;
-  --text-lg: 1.5rem;
+  --text-xs: clamp(.5rem, 1.5vw, .8rem);
+  --text-sm: clamp(.8rem, 2vw, 1rem);
+  --text-md: clamp(.9rem, 2.4vw, 1.35rem);
+  --text-lg: clamp(1rem, 3vw, 1.6rem);
 
   /* Colors */
+  --color-error: rgb(233, 132, 131);
   --white: #FAFAFA;
   --color-primary: rgb(46, 201, 183);
   --color-secondary: rgb(17, 138, 178);
@@ -27,9 +28,12 @@
   --input-focus-shadow: 0 0 4px 2px rgba(17, 138, 178, 0.25);
 }
 
+html {
+  font-size: 16px;
+}
+
 * {
   font-family: "Fredoka", sans-serif;
-  font-size: 12px;
   box-sizing: border-box;
 }
 
@@ -41,30 +45,11 @@ body {
   background-size: cover;
   margin: 0;
   box-sizing: border-box;
-  min-width: 300px;
+  min-width: 345px;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-@media screen and (min-width:540px) {
-  * {
-    font-size: 14px;
-  }
-}
-
-@media screen and (min-width:760px) {
-  * {
-    font-size: 16px;
-  }
-}
-
-
-@media screen and (min-width:1204px) {
-  * {
-    font-size: 18px;
-  }
 }

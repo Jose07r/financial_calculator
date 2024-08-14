@@ -4,10 +4,9 @@ import reduceDecimalsFromObject from '@/utils/reduceDecimalsFromObject';
 function calculateContributions(
   initialBalance,
   savingsGoal,
-  yearsToGoal,
+  monthsToGoal,
   annualInterestRate
 ) {
-  const monthsToGoal = yearsToGoal * 12;
   const monthlyInterestRate = annualInterestRate / 12 / 100;
   let contributions;
 

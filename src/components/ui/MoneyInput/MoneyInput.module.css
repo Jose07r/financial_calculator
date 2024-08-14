@@ -1,3 +1,9 @@
+:global(.error) .input_container,
+:global(.error) .input_container:focus-within {
+    box-shadow: none;
+    outline: 1.5px solid var(--color-error);
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -24,8 +30,9 @@
     height: auto;
     box-sizing: border-box;
     box-shadow: 0 0 4px 2px transparent;
+    outline: 1.5px solid transparent;
     opacity: .75;
-    transition: box-shadow .6s ease, opacity .6s ease;
+    transition: box-shadow .6s ease, opacity .6s ease, outline .6s ease;
 }
 
 .input_container:focus-within {
@@ -46,7 +53,7 @@
 
 .input {
     color: var(--color-secondary);
-    font-size: 1.2rem;
+    font-size: var(--text-md);
     font-weight: 600;
     letter-spacing: 1.5px;
     appearance: none;

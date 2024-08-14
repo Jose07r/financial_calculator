@@ -5,5 +5,5 @@
     width: 100%;
     max-width: 650px;
     height: 100%;
-    padding-bottom: 2rem;
+    padding-bottom: min(2rem, 5vw);
 }

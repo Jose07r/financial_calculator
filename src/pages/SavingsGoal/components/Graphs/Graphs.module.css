@@ -1,0 +1,77 @@
+.graphs_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.graph_title {
+    font-size: var(--text-sm);
+    letter-spacing: 1px;
+    color: var(--text-dark);
+    margin: 0;
+    margin-bottom: .8rem;
+}
+
+.controls_container {
+    position: absolute;
+    top: -2.5rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+:global(.react_select__control):hover {
+    opacity: 1;
+}
+
+.graph_type_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.graph_type_container>button {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: min(1.5rem, 3vw);
+    width: min(1.5rem, 3vw);
+    padding: min(.5rem, 2vw);
+    background-color: var(--white);
+    border: none;
+    box-shadow: 0 0 4px 0 rgba(17, 138, 178, 0.35);
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: content-box;
+}
+
+.svg_icon {
+    width: min(1.5rem, 3vw);
+}
+
+.svg_icon>path {
+    fill: var(--text-secondary);
+    fill-opacity: .5;
+    transition: fill-opacity .3s ease;
+}
+
+.graph_type_container>button:hover .svg_icon>path {
+    fill-opacity: .75;
+}
+
+.graph_type_container:global(>button.active) {
+    background-color: var(--input-bg);
+}
+
+.graph_type_container:global(>button.active) .svg_icon>path {
+    fill: var(--text-dark);
+    fill-opacity: 1;
+}

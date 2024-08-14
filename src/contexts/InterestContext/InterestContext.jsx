@@ -21,11 +21,27 @@ const initialSate = {
 function reducer(state, action) {
   switch (action.type) {
     case 'onStartingAmountChange': {
-      const parsedValue = parseNumber(action.payload);
+      const inputValue = action.payload;
 
-      if (!parsedValue)
-        return { ...state, startingAmount: { raw: null, formattedValue: '' } };
+      // Return an empty string when input is empty
+      if (inputValue === '') {
+        return {
+          ...state,
+          startingAmount: { raw: null, formattedValue: '' },
+        };
+      }
 
+      const parsedValue = parseNumber(inputValue);
+
+      // Return an empty string when input cant be parsed as a number
+      if (isNaN(parsedValue)) {
+        return {
+          ...state,
+          startingAmount: { raw: null, formattedValue: '' },
+        };
+      }
+
+      // Return the parsed and formatted value
       return {
         ...state,
         startingAmount: {
@@ -36,6 +52,13 @@ function reducer(state, action) {
     }
     case 'onMonthlyContributionChange': {
       const parsedValue = parseNumber(action.payload);
+
+      if (parsedValue === 0) {
+        return {
+          ...state,
+          monthlyContribution: { raw: 0, formattedValue: '0' },
+        };
+      }
 
       if (!parsedValue)
         return {

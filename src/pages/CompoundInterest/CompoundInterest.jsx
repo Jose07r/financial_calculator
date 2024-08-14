@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import NavBar from '@components/layout/NavBar/NavBar';
 import Main from '@components/layout/Main/Main';
-import InterestForm from '@components/compound_interest/InterestForm/InterestForm';
-import ResultsGraph from '@components/compound_interest/ResultsGraph/ResultsGraph';
-import ResultsSummary from '@components/compound_interest/ResultsSummary/ResultsSummary';
+import InterestForm from '@pages/CompoundInterest/components/InterestForm/InterestForm';
+import ResultsGraph from '@pages/CompoundInterest/components/ResultsGraph/ResultsGraph';
+import ResultsSummary from '@pages/CompoundInterest/components/ResultsSummary/ResultsSummary';
 import Footer from '@components/layout/Footer/Footer';
 
 import {

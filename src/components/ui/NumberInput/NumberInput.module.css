@@ -1,0 +1,56 @@
+.input_container {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    padding-left: 1rem;
+}
+
+.input_container:global(.radio_children) {
+    --color-secondary: var(--text-secondary)
+}
+
+.input_label {
+    color: var(--color-secondary);
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.input_label>span {
+    font-size: clamp(.6rem, 1.5vw, .8rem);
+    font-weight: 400;
+}
+
+:global(.error) .input,
+:global(.error) .input:focus {
+    box-shadow: none;
+    outline: 1.5px solid var(--color-error)
+}
+
+.input {
+    appearance: none;
+    background-color: var(--input-bg);
+    color: var(--color-secondary);
+    font-size: var(--text-md);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    border: none;
+    outline: none;
+    padding: .35rem;
+    border-radius: .5rem;
+    height: auto;
+    width: 8ch;
+    box-sizing: border-box;
+    box-shadow: 0 0 4px 2px transparent;
+    outline: 1.5px solid transparent;
+    opacity: .75;
+    transition: box-shadow .6s ease, opacity .6s ease outline .6s ease;
+}
+
+.input::placeholder {
+    color: var(--text-secondary);
+}
+
+.input:focus {
+    box-shadow: var(--input-focus-shadow);
+    opacity: 1;
+}

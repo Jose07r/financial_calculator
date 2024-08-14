@@ -5,5 +5,7 @@ export function formatNumberWithCommas(x) {
 }
 
 export function parseNumber(formattedNumber) {
-  return parseFloat(formattedNumber.replace(/,/g, ''));
+  let cleanedNumber = formattedNumber.replace(/,/g, '');
+  cleanedNumber = cleanedNumber.replace(/^0+/, '') || '0';
+  return parseFloat(cleanedNumber);
 }

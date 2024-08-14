@@ -21,7 +21,9 @@ function RadioInput({
             value={val1}
             defaultChecked
           />
-          <span className={styles['radio_marker']}></span>
+          <div className={styles['radio_marker']}>
+            <span className={styles['radio_checked_marker']}></span>
+          </div>
         </label>
 
         <label className={styles['radio_container']}>
@@ -33,7 +35,9 @@ function RadioInput({
             name={radioName}
             value={val2}
           />
-          <span className={styles['radio_marker']}></span>
+          <div className={styles['radio_marker']}>
+            <span className={styles['radio_checked_marker']}></span>
+          </div>
         </label>
       </div>
     </div>

@@ -1,13 +1,11 @@
 .dropdown_btn {
     display: flex;
     align-items: center;
-    font-size: var(--text-sm);
     font-weight: 600;
     font-size: var(--text-sm);
     background-color: transparent;
     color: var(--color-secondary);
     padding: .6rem;
-    transition: opacity .3s ease;
     max-width: 40vw;
     cursor: pointer;
     opacity: 0.75;

@@ -21,7 +21,10 @@ const initialSate = {
     raw: null,
     formattedValue: '',
   },
-  yearsToReachGoal: 1,
+  deadline: {
+    years: '',
+    months: '',
+  },
   annualInterest: 0,
   results: null,
 };
@@ -29,11 +32,27 @@ const initialSate = {
 function reducer(state, action) {
   switch (action.type) {
     case 'onInitialBalanceChange': {
-      const parsedValue = parseNumber(action.payload);
+      const inputValue = action.payload;
 
-      if (!parsedValue)
-        return { ...state, initialBalance: { raw: null, formattedValue: '' } };
+      // Return an empty string when input is empty
+      if (inputValue === '') {
+        return {
+          ...state,
+          initialBalance: { raw: null, formattedValue: '' },
+        };
+      }
 
+      const parsedValue = parseNumber(inputValue);
+
+      // Return an empty string when input cant be parsed as a number
+      if (isNaN(parsedValue)) {
+        return {
+          ...state,
+          initialBalance: { raw: null, formattedValue: '' },
+        };
+      }
+
+      // Return the parsed and formatted value
       return {
         ...state,
         initialBalance: {
@@ -43,13 +62,22 @@ function reducer(state, action) {
       };
     }
     case 'onSavingsGoalChange': {
-      const parsedValue = parseNumber(action.payload);
-
-      if (!parsedValue)
+      const inputValue = action.payload;
+      if (inputValue === '') {
         return {
           ...state,
           savingsGoal: { raw: null, formattedValue: '' },
         };
+      }
+
+      const parsedValue = parseNumber(inputValue);
+
+      if (isNaN(parsedValue)) {
+        return {
+          ...state,
+          savingsGoal: { raw: null, formattedValue: '' },
+        };
+      }
 
       return {
         ...state,
@@ -60,13 +88,22 @@ function reducer(state, action) {
       };
     }
     case 'onMonthlyContributionChange': {
-      const parsedValue = parseNumber(action.payload);
-
-      if (!parsedValue)
+      const inputValue = action.payload;
+      if (inputValue === '') {
         return {
           ...state,
           monthlyContribution: { raw: null, formattedValue: '' },
         };
+      }
+
+      const parsedValue = parseNumber(inputValue);
+
+      if (isNaN(parsedValue)) {
+        return {
+          ...state,
+          monthlyContribution: { raw: null, formattedValue: '' },
+        };
+      }
 
       return {
         ...state,
@@ -76,8 +113,23 @@ function reducer(state, action) {
         },
       };
     }
-    case 'onYearsToReachGoalChange': {
-      return { ...state, yearsToReachGoal: action.payload };
+    case 'onYearsChange': {
+      return {
+        ...state,
+        deadline: {
+          ...state.deadline,
+          years: action.payload,
+        },
+      };
+    }
+    case 'onMonthsChange': {
+      return {
+        ...state,
+        deadline: {
+          ...state.deadline,
+          months: action.payload,
+        },
+      };
     }
     case 'onInterestRateChange': {
       return { ...state, annualInterest: action.payload };
@@ -88,11 +140,19 @@ function reducer(state, action) {
         const data = calculateContributions(
           state.initialBalance.raw,
           state.savingsGoal.raw,
-          state.yearsToReachGoal,
+          state.deadline.years * 12 + state.deadline.months,
           state.annualInterest
         );
 
-        return { ...state, results: { data: { ...data } } };
+        return {
+          ...state,
+          results: {
+            calculationType: action.payload,
+            yearsToGoal: state.deadline.years,
+            monthsRemaining: state.deadline.months,
+            data: { ...data },
+          },
+        };
       }
 
       // To calculate time required to reach goal
@@ -107,6 +167,7 @@ function reducer(state, action) {
         return {
           ...state,
           results: {
+            calculationType: action.payload,
             yearsToGoal,
             monthsRemaining,
             data: { ...data },
@@ -127,7 +188,7 @@ function SavingsProvider({ children }) {
       initialBalance,
       savingsGoal,
       monthlyContribution,
-      yearsToReachGoal,
+      deadline,
       annualInterest,
       results,
     },
@@ -140,7 +201,7 @@ function SavingsProvider({ children }) {
         initialBalance,
         savingsGoal,
         monthlyContribution,
-        yearsToReachGoal,
+        deadline,
         annualInterest,
         results,
         dispatch,

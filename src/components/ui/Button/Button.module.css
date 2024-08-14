@@ -3,7 +3,7 @@
     border: none;
     background-color: var(--color-secondary);
     color: var(--white);
-    font-size: 1rem;
+    font-size: var(--text-sm);
     font-weight: 600;
     padding: .5rem 1rem;
     letter-spacing: 1px;
