@@ -1,5 +1,5 @@
 {
-  "homepage": "https://Jose07r.github.io/financial_calculator/compound-interest-calculator",
+  "homepage": "https://Jose07r.github.io/financial_calculator",
   "name": "financial_calculator",
   "private": true,
   "version": "0.0.0",
@@ -14,7 +14,6 @@
   "dependencies": {
     "@tanstack/react-table": "^8.19.3",
     "chart.js": "^4.4.3",
-    "gh-pages": "^6.1.1",
     "rc-slider": "^11.1.2",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
@@ -31,6 +30,7 @@
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "gh-pages": "^6.1.1",
     "vite": "^5.3.1"
   }
 }
