@@ -1,3 +1,4 @@
+import { useSavingsContext } from '@/contexts/SavingsContext/SavingsContext';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 
@@ -13,8 +14,8 @@ import addMonthsToDate from '@/utils/addMonthsToDate';
 
 import styles from '@pages/SavingsGoal/components/ResultsSummary/ResultsSummary.module.css';
 
-function ResultsSummary({ isLoading, getContext }) {
-  const { savingsGoal, results } = getContext();
+function ResultsSummary({ isLoading }) {
+  const { results } = useSavingsContext();
   const [resultsIsVisible, setResultsIsVisible] = useState(false);
 
   const calculationType = results ? results.calculationType : null;
@@ -40,22 +41,32 @@ function ResultsSummary({ isLoading, getContext }) {
   }, [results, isLoading]);
 
   // Card Item Info
-  const initialBalance = results
-    ? formatNumberWithCommas(results.data.monthly[0].principal)
+  const initialBalance = results ? results.final?.initialBalance : null;
+  const savingsGoal = results ? results.final?.savingsGoal : null;
+  const monthlyContribution = results
+    ? results.final?.monthlyContribution
     : null;
-  const contribution = results
-    ? formatNumberWithCommas(results.data.monthly[0].contributions)
-    : null;
-  const yearsToGoal = results ? results.yearsToGoal : null;
-  const monthsRemaining = results ? results.monthsRemaining : null;
-  const totalSavings = results
-    ? formatNumberWithCommas(
-        results.data.monthly[results.data.monthly.length - 1].balance
-      )
-    : null;
+  const yearsToGoal = results ? results.final?.yearsToGoal : null;
+  const monthsRemaining = results ? results.final?.monthsRemaining : null;
+  const totalSavings = results ? results.final?.totalSavings : null;
   const dateToGoal = results
     ? addMonthsToDate(results.data.monthly.length)
     : null;
+
+  // Conditional text for the saving goal time
+  let timeToGoalText = '';
+  if (yearsToGoal !== 0) {
+    timeToGoalText += `${yearsToGoal} ${yearsToGoal === 1 ? 'year' : 'years'}`;
+  }
+
+  if (monthsRemaining !== 0) {
+    if (yearsToGoal !== 0) {
+      timeToGoalText += `, `;
+    }
+    timeToGoalText += `${monthsRemaining} ${
+      monthsRemaining === 1 ? 'month' : 'months'
+    }`;
+  }
 
   if (isLoading) {
     return;
@@ -73,7 +84,7 @@ function ResultsSummary({ isLoading, getContext }) {
                   animate={resultsIsVisible}
                   image={<IoMdWallet />}
                   title="Initial Balance"
-                  text={initialBalance}
+                  text={`$${initialBalance}`}
                 />
               )}
 
@@ -81,7 +92,7 @@ function ResultsSummary({ isLoading, getContext }) {
                 animate={resultsIsVisible}
                 image={<GoGoal />}
                 title="Savings Goal"
-                text={savingsGoal.formattedValue}
+                text={`$${savingsGoal}`}
               />
               {calculationType !== 'contribution' && (
                 <>
@@ -89,15 +100,13 @@ function ResultsSummary({ isLoading, getContext }) {
                     animate={resultsIsVisible}
                     image={<FaClock />}
                     title="Time to save"
-                    text={`${yearsToGoal} years${
-                      monthsRemaining ? `, ${monthsRemaining} months` : ''
-                    }`}
+                    text={timeToGoalText}
                   />
                   <CardItem
                     animate={resultsIsVisible}
                     image={<FaMoneyBills />}
                     title="Monthly contribution"
-                    text={contribution}
+                    text={`$${monthlyContribution}`}
                   />
                   <CardItem
                     animate={resultsIsVisible}
@@ -112,9 +121,7 @@ function ResultsSummary({ isLoading, getContext }) {
                   animate={resultsIsVisible}
                   image={<FaClock />}
                   title="Time to reach goal"
-                  text={`${yearsToGoal} years${
-                    monthsRemaining ? `, ${monthsRemaining} months` : ''
-                  }`}
+                  text={timeToGoalText}
                 />
               )}
             </div>
@@ -139,7 +146,7 @@ function ResultsSummary({ isLoading, getContext }) {
                 </h3>
                 <strong className={styles['final_text']}>
                   {calculationType === 'contribution'
-                    ? `$${contribution}`
+                    ? `$${monthlyContribution}`
                     : dateToGoal}
                 </strong>
                 {calculationType === 'contribution' && (

@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer } from 'react';
 import { formatNumberWithCommas, parseNumber } from '@/utils/formatNumber';
 
 import {
-  calculateContributions,
+  calculateContribution,
   calculateYearsToGoal,
 } from '@/contexts/SavingsContext/savingsGoalCalculator';
 
@@ -23,7 +23,7 @@ const initialSate = {
   },
   deadline: {
     years: '',
-    months: '',
+    months: 0,
   },
   annualInterest: 0,
   results: null,
@@ -137,7 +137,7 @@ function reducer(state, action) {
     case 'onCalculate': {
       // To calculate monthly contribution required to reach goal
       if (action.payload === 'contribution') {
-        const data = calculateContributions(
+        const { data, monthlyContribution } = calculateContribution(
           state.initialBalance.raw,
           state.savingsGoal.raw,
           state.deadline.years * 12 + state.deadline.months,
@@ -148,8 +148,13 @@ function reducer(state, action) {
           ...state,
           results: {
             calculationType: action.payload,
-            yearsToGoal: state.deadline.years,
-            monthsRemaining: state.deadline.months,
+            final: {
+              initialBalance: state.initialBalance.formattedValue,
+              savingsGoal: state.savingsGoal.formattedValue,
+              monthlyContribution: formatNumberWithCommas(monthlyContribution),
+              yearsToGoal: state.deadline.years,
+              monthsRemaining: state.deadline.months,
+            },
             data: { ...data },
           },
         };
@@ -157,19 +162,26 @@ function reducer(state, action) {
 
       // To calculate time required to reach goal
       if (action.payload === 'time') {
-        const { yearsToGoal, monthsRemaining, data } = calculateYearsToGoal(
-          state.initialBalance.raw,
-          state.savingsGoal.raw,
-          state.monthlyContribution.raw,
-          state.annualInterest
-        );
+        const { yearsToGoal, monthsRemaining, totalSavings, data } =
+          calculateYearsToGoal(
+            state.initialBalance.raw,
+            state.savingsGoal.raw,
+            state.monthlyContribution.raw,
+            state.annualInterest
+          );
 
         return {
           ...state,
           results: {
             calculationType: action.payload,
-            yearsToGoal,
-            monthsRemaining,
+            final: {
+              savingsGoal: state.savingsGoal.formattedValue,
+              monthlyContribution: state.monthlyContribution.formattedValue,
+              yearsToGoal,
+              monthsRemaining,
+              totalSavings: formatNumberWithCommas(totalSavings),
+            },
+
             data: { ...data },
           },
         };

@@ -4,7 +4,7 @@
     justify-content: space-between;
     max-height: 75px;
     border-bottom: 2px solid rgba(17, 138, 178, 0.1);
-    padding: 1.2rem 2rem;
+    padding: min(1.8rem, 4vw);
     box-sizing: border-box;
 }
 

@@ -1,17 +1,15 @@
+import { useInterestContext } from '@/contexts/InterestContext/InterestContext';
+import { useRef, useState, useEffect } from 'react';
+
 import walletIcon from '@images/results-wallet.svg';
 import contributionsIcon from '@images/results-contributions.svg';
 import interestIcon from '@images/results-interest-projection.svg';
 import balanceIcon from '@images/results-balance.svg';
-import { formatNumberWithCommas } from '@/utils/formatNumber';
 
 import styles from '@pages/CompoundInterest/components/ResultsSummary/ResultsSummary.module.css';
-import { useRef, useState } from 'react';
-import { useEffect } from 'react';
 
-function ResultsSummary({ isLoading, getContext }) {
-  const { startingAmount, results } = getContext();
-  let dataResults = null;
-  if (results) dataResults = results.data;
+function ResultsSummary({ isLoading }) {
+  const { results } = useInterestContext();
   const [resultsIsVisible, setResultsIsVisible] = useState(false);
 
   const resultsRef = useRef(null);
@@ -32,91 +30,66 @@ function ResultsSummary({ isLoading, getContext }) {
     return () => {
       setResultsIsVisible(false);
     };
-  }, [dataResults, isLoading]);
+  }, [results, isLoading]);
 
   // Card Item Info
-  const accruedInterest = dataResults
-    ? dataResults.yearly[dataResults.yearly.length - 1].accrued_interest
+  const startingAmount = results ? results.final.startingAmount : null;
+  const accruedContributions = results
+    ? results.final.accrued_contributions
     : null;
-  const accruedContributions = dataResults
-    ? dataResults.yearly[dataResults.yearly.length - 1].accrued_contributions
-    : null;
-  const totalBalance = dataResults
-    ? dataResults.yearly[dataResults.yearly.length - 1].balance
-    : null;
+  const accruedInterest = results ? results.final.accrued_interest : null;
+  const totalBalance = results ? results.final.balance : null;
 
   if (isLoading) {
     return;
   } else {
     return (
       <>
-        {dataResults && (
+        {results && (
           <div className={styles['results_container']}>
             {/* Main Investment Performance */}
             <h2 className={styles['results_title']}>Results:</h2>
             {/* Cards */}
             <div className={styles['cards_container']} ref={resultsRef}>
-              <div
-                className={`${styles['card_item']}${
-                  resultsIsVisible ? ' animate' : ''
-                }`}
-              >
-                <span>
+              <CardItem
+                animate={resultsIsVisible}
+                image={
                   <img
                     className={styles['card_image']}
                     src={walletIcon}
                     alt="Wallet icon"
                   />
-                </span>
-                <div className={styles['card_body']}>
-                  <h3 className={styles['card_title']}>Initial Investment</h3>
-                  <strong className={styles['card_text']}>
-                    ${startingAmount.formattedValue}
-                  </strong>
-                </div>
-              </div>
-
-              <div
-                className={`${styles['card_item']}${
-                  resultsIsVisible ? ' animate' : ''
-                }`}
-              >
-                <span>
+                }
+                title="Starting amount"
+                text={`$${startingAmount}`}
+              />
+              <CardItem
+                animate={resultsIsVisible}
+                image={
                   <img
                     className={styles['card_image']}
                     src={contributionsIcon}
                     alt="Coins icon"
                   />
-                </span>
-                <div className={styles['card_body']}>
-                  <h3 className={styles['card_title']}>Extra Contributions</h3>
-                  <strong className={styles['card_text']}>
-                    ${formatNumberWithCommas(accruedContributions)}
-                  </strong>
-                </div>
-              </div>
-
-              <div
-                className={`${styles['card_item']}${
-                  resultsIsVisible ? ' animate' : ''
-                }`}
-              >
-                <span>
+                }
+                title="Extra contributions"
+                text={`$${accruedContributions}`}
+              />
+              <CardItem
+                animate={resultsIsVisible}
+                image={
                   <img
                     className={styles['card_image']}
                     src={interestIcon}
                     alt="Interest projection icon"
                   />
-                </span>
-                <div className={styles['card_body']}>
-                  <h3 className={styles['card_title']}>Accrued Interest</h3>
-                  <strong className={styles['card_text']}>
-                    ${formatNumberWithCommas(accruedInterest)}
-                  </strong>
-                </div>
-              </div>
+                }
+                title="Accrued interest"
+                text={`$${accruedInterest}`}
+              />
             </div>
 
+            {/* Balance Summary */}
             <div
               className={`${styles['balance_container']}${
                 resultsIsVisible ? ' animate' : ''
@@ -132,7 +105,7 @@ function ResultsSummary({ isLoading, getContext }) {
               <div className={styles['balance_body']}>
                 <h3 className={styles['balance_title']}>TOTAL BALANCE</h3>
                 <strong className={styles['balance_text']}>
-                  ${formatNumberWithCommas(totalBalance)}
+                  ${totalBalance}
                 </strong>
               </div>
             </div>
@@ -141,6 +114,18 @@ function ResultsSummary({ isLoading, getContext }) {
       </>
     );
   }
+}
+
+function CardItem({ animate, image, title, text }) {
+  return (
+    <div className={`${styles['card_item']}${animate ? ' animate' : ''}`}>
+      <span className={styles['card_image']}>{image}</span>
+      <div className={styles['card_body']}>
+        <h3 className={styles['card_title']}>{title}</h3>
+        <strong className={styles['card_text']}>{text}</strong>
+      </div>
+    </div>
+  );
 }
 
 export default ResultsSummary;

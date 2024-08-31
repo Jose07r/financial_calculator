@@ -1,3 +1,6 @@
+import { useSavingsContext } from '@/contexts/SavingsContext/SavingsContext';
+import { useEffect, useState } from 'react';
+
 import Box from '@components/ui/Box/Box';
 import MoneyInput from '@components/ui/MoneyInput/MoneyInput';
 import RadioInput from '@components/ui/RadioInput/RadioInput';
@@ -6,14 +9,8 @@ import RangeInput from '@components/ui/RangeInput/RangeInput';
 import Button from '@components/ui/Button/Button';
 
 import styles from '@pages/SavingsGoal/components/SavingsForm/SavingsForm.module.css';
-import { useEffect, useState } from 'react';
 
-function SavingsForm({
-  setIsLoading,
-  calculationType,
-  setCalculationType,
-  getContext,
-}) {
+function SavingsForm({ setIsLoading, calculationType, setCalculationType }) {
   const {
     initialBalance,
     savingsGoal,
@@ -21,7 +18,7 @@ function SavingsForm({
     deadline,
     annualInterest,
     dispatch,
-  } = getContext();
+  } = useSavingsContext();
 
   const [formError, setFormError] = useState(null);
 
@@ -43,10 +40,10 @@ function SavingsForm({
     if (initialBalance.raw === 0 && savingsGoal.raw === 0) {
       setFormError({
         message: '* Initial balance and Savings goal cannot both be set to 0',
-        section: 1,
+        type: 'amount',
       });
     } else if (deadline.years === 0 && deadline.months === 0) {
-      setFormError({ message: '* Please enter a deadline.', section: 2 });
+      setFormError({ message: '* Please enter a deadline.', type: 'deadline' });
     }
 
     return () => setFormError(null);
@@ -57,7 +54,9 @@ function SavingsForm({
       <form onSubmit={handleSubmit} className={styles['form']}>
         <div className={styles['inputs_container']}>
           <MoneyInput
-            customClass={formError && formError.section === 1 ? 'error' : ''}
+            customClass={
+              formError && formError.type === 'amount' ? 'error' : ''
+            }
             labelText="Initial balance"
             inputValue={initialBalance.formattedValue}
             onChangeFn={(e) => {
@@ -68,7 +67,9 @@ function SavingsForm({
             }}
           />
           <MoneyInput
-            customClass={formError && formError.section === 1 ? 'error' : ''}
+            customClass={
+              formError && formError.type === 'amount' ? 'error' : ''
+            }
             labelText="Savings goal"
             inputValue={savingsGoal.formattedValue}
             onChangeFn={(e) => {
@@ -90,19 +91,19 @@ function SavingsForm({
             {calculationType === 'contribution' ? (
               <div className={styles['number_input_container']}>
                 <NumberInput
-                  customClass={`radio_children${
-                    formError && formError.section === 2 ? ' error' : ''
+                  customClass={`child${
+                    formError && formError.type === 'deadline' ? ' error' : ''
                   }`}
                   inputLabel="Years"
                   minValue={0}
-                  maxValue={30}
+                  maxValue={60}
                   inputValue={deadline.years}
                   dispatch={dispatch}
                   dispatchType="onYearsChange"
                 />
                 <NumberInput
-                  customClass={`radio_children${
-                    formError && formError.section === 2 ? ' error' : ''
+                  customClass={`child${
+                    formError && formError.type === 'deadline' ? ' error' : ''
                   }`}
                   inputLabel="Months"
                   minValue={0}
@@ -114,7 +115,7 @@ function SavingsForm({
               </div>
             ) : (
               <MoneyInput
-                customClass="radio_children"
+                customClass="child"
                 labelText="Monthly contributions"
                 inputValue={monthlyContribution.formattedValue}
                 onChangeFn={(e) => {
@@ -126,25 +127,23 @@ function SavingsForm({
               />
             )}
           </div>
-
-          <RangeInput
-            labelText="Annual interest rate"
-            inputValue={annualInterest}
-            valueType="%"
-            minValue={0}
-            maxValue={25}
-            onChangeFn={(value) => {
-              dispatch({
-                type: 'onInterestRateChange',
-                payload: Number(value),
-              });
-            }}
-          />
+          <div className={styles['annual_interest_container']}>
+            <NumberInput
+              inputLabel="Annual interest rate"
+              percentage={true}
+              minValue={0}
+              maxValue={100}
+              decimalAllowed={true}
+              inputValue={annualInterest}
+              dispatch={dispatch}
+              dispatchType="onInterestRateChange"
+            />
+          </div>
         </div>
         <p className={`${styles['error_text']}${formError ? ' show' : ''}`}>
           {formError && formError.message}
         </p>
-        <Button btnText="Calculate" />
+        <Button btnText="Calculate" btnType="primary" />
       </form>
     </Box>
   );

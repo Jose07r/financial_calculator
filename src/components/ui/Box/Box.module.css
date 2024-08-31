@@ -5,19 +5,37 @@
     background-color: var(--white);
     padding: min(2rem, 5vw) min(1.5rem, 5vw);
     box-shadow: var(--box-shadow);
+    flex-grow: 1;
+    opacity: 0;
+    transform: translateX(-10%);
     border-radius: 1rem;
+    animation: .6s ease 400ms forwards slidein;
+}
+
+@keyframes slidein {
+    from {
+        opacity: 0;
+        transform: translateX(-10%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
 }
 
 .box:global(.form-box) {
-    flex-grow: 1;
     flex-basis: 345px;
     height: max-content;
 }
 
 .box:global(.graphs-box) {
-    flex-grow: 1;
     flex-basis: 600px;
     padding: 3rem min(2rem, 5vw) 0 min(2rem, 5vw);
     overflow: hidden;
-    width: 100%;
+}
+
+.box:global(.amortization_table) {
+    flex-basis: 600px;
+    padding: min(2rem, 5vw);
 }

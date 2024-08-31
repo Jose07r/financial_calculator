@@ -34,7 +34,7 @@
     --color-primary: rgba(76, 112, 124, 0.65);
     --color-primary-darker: rgba(76, 112, 124, .75);
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1.25fr 4fr;
     align-items: center;
     justify-content: start;
     background-color: transparent;

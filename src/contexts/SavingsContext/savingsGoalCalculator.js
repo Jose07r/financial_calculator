@@ -1,20 +1,20 @@
 import reduceDecimalsFromObject from '@/utils/reduceDecimalsFromObject';
 
-// Calculate the required monthly contributions to reach goal
-function calculateContributions(
+// Calculate the required monthly contribution to reach goal
+function calculateContribution(
   initialBalance,
   savingsGoal,
   monthsToGoal,
   annualInterestRate
 ) {
   const monthlyInterestRate = annualInterestRate / 12 / 100;
-  let contributions;
+  let monthlyContribution;
 
   if (monthlyInterestRate === 0) {
-    contributions = (savingsGoal - initialBalance) / monthsToGoal;
+    monthlyContribution = (savingsGoal - initialBalance) / monthsToGoal;
   } else {
-    // Formula for getting required monthly contribution
-    contributions =
+    // Formula for calculating required monthly contribution
+    monthlyContribution =
       (savingsGoal -
         initialBalance * Math.pow(1 + monthlyInterestRate, monthsToGoal)) /
       ((Math.pow(1 + monthlyInterestRate, monthsToGoal) - 1) /
@@ -35,9 +35,9 @@ function calculateContributions(
     // Calculate interest for the month
     let interestForMonth = balance * monthlyInterestRate;
 
-    balance += interestForMonth + contributions;
+    balance += interestForMonth + monthlyContribution;
 
-    accrued_contributions += contributions;
+    accrued_contributions += monthlyContribution;
     accrued_interest += interestForMonth;
 
     // Monthly record
@@ -45,7 +45,7 @@ function calculateContributions(
       reduceDecimalsFromObject({
         month,
         principal: initialBalance,
-        contributions,
+        monthlyContribution,
         interest: interestForMonth,
         accrued_contributions,
         accrued_interest,
@@ -54,7 +54,10 @@ function calculateContributions(
     );
   }
 
-  return data;
+  return {
+    data,
+    monthlyContribution: parseFloat(monthlyContribution.toFixed(2)),
+  };
 }
 
 // Calculate the time when the goal will be reached
@@ -78,17 +81,17 @@ function calculateYearsToGoal(
   // Loop until balance hits the goal
   while (balance < savingsGoal) {
     month++;
-    let interestGained = balance * monthlyInterestRate;
-    balance += interestGained + monthlyContribution;
+    let interestForMonth = balance * monthlyInterestRate;
+    balance += interestForMonth + monthlyContribution;
     accruedContributions += monthlyContribution;
-    accruedInterest += interestGained;
+    accruedInterest += interestForMonth;
 
     data.monthly.push(
       reduceDecimalsFromObject({
         month: month,
         principal: initialBalance,
-        contributions: monthlyContribution,
-        interest: interestGained,
+        monthlyContribution,
+        interest: interestForMonth,
         accrued_contributions: accruedContributions,
         accrued_interest: accruedInterest,
         balance: balance,
@@ -98,7 +101,12 @@ function calculateYearsToGoal(
 
   const yearsToGoal = Math.floor(month / 12);
   const monthsRemaining = month % 12;
-  return { yearsToGoal, monthsRemaining, data };
+  return {
+    yearsToGoal,
+    monthsRemaining,
+    totalSavings: parseFloat(balance.toFixed(2)),
+    data,
+  };
 }
 
-export { calculateContributions, calculateYearsToGoal };
+export { calculateContribution, calculateYearsToGoal };

@@ -1,15 +1,12 @@
+import { InterestProvider } from '@/contexts/InterestContext/InterestContext';
 import { useState } from 'react';
+
 import NavBar from '@components/layout/NavBar/NavBar';
 import Main from '@components/layout/Main/Main';
 import InterestForm from '@pages/CompoundInterest/components/InterestForm/InterestForm';
 import ResultsGraph from '@pages/CompoundInterest/components/ResultsGraph/ResultsGraph';
 import ResultsSummary from '@pages/CompoundInterest/components/ResultsSummary/ResultsSummary';
 import Footer from '@components/layout/Footer/Footer';
-
-import {
-  InterestProvider,
-  useInterestContext,
-} from '@/contexts/InterestContext/InterestContext';
 
 import styles from '@pages/Main.module.css';
 
@@ -29,19 +26,10 @@ function CompoundInterest() {
             calculator.
           </p>
           <div className={styles['box_container']}>
-            <InterestForm
-              setIsLoading={setIsLoading}
-              getContext={useInterestContext}
-            />
-            <ResultsGraph
-              isLoading={isLoading}
-              getContext={useInterestContext}
-            />
+            <InterestForm setIsLoading={setIsLoading} />
+            <ResultsGraph isLoading={isLoading} />
           </div>
-          <ResultsSummary
-            isLoading={isLoading}
-            getContext={useInterestContext}
-          />
+          <ResultsSummary isLoading={isLoading} />
           <div className={styles['content_bottom']}>
             <h2>What is compound interest?</h2>
             <p>

@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  SavingsProvider,
-  useSavingsContext,
-} from '@/contexts/SavingsContext/SavingsContext';
+import { SavingsProvider } from '@/contexts/SavingsContext/SavingsContext';
 
 import NavBar from '@components/layout/NavBar/NavBar';
 import Main from '@components/layout/Main/Main';
@@ -33,16 +30,9 @@ function SavingsGoal() {
               setIsLoading={setIsLoading}
               calculationType={calculationType}
               setCalculationType={setCalculationType}
-              getContext={useSavingsContext}
             />
-            <ResultsSummary
-              isLoading={isLoading}
-              getContext={useSavingsContext}
-            />
-            <ResultsGraph
-              isLoading={isLoading}
-              getContext={useSavingsContext}
-            />
+            <ResultsSummary isLoading={isLoading} />
+            <ResultsGraph isLoading={isLoading} />
           </div>
 
           <div className={styles['content_bottom']}>

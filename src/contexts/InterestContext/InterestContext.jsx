@@ -13,7 +13,10 @@ const initialSate = {
     raw: null,
     formattedValue: '',
   },
-  yearsOfInvesting: 1,
+  investmentPeriod: {
+    years: '',
+    months: 0,
+  },
   annualInterest: 0,
   results: null,
 };
@@ -51,20 +54,23 @@ function reducer(state, action) {
       };
     }
     case 'onMonthlyContributionChange': {
-      const parsedValue = parseNumber(action.payload);
+      const inputValue = action.payload;
 
-      if (parsedValue === 0) {
-        return {
-          ...state,
-          monthlyContribution: { raw: 0, formattedValue: '0' },
-        };
-      }
-
-      if (!parsedValue)
+      if (inputValue === '') {
         return {
           ...state,
           monthlyContribution: { raw: null, formattedValue: '' },
         };
+      }
+
+      const parsedValue = parseNumber(inputValue);
+
+      if (isNaN(parsedValue)) {
+        return {
+          ...state,
+          monthlyContribution: { raw: null, formattedValue: '' },
+        };
+      }
 
       return {
         ...state,
@@ -74,23 +80,52 @@ function reducer(state, action) {
         },
       };
     }
-    case 'onNumOfYearsChange': {
-      return { ...state, yearsOfInvesting: action.payload };
+    case 'onYearsChange': {
+      return {
+        ...state,
+        investmentPeriod: {
+          ...state.investmentPeriod,
+          years: action.payload,
+        },
+      };
+    }
+    case 'onMonthsChange': {
+      return {
+        ...state,
+        investmentPeriod: {
+          ...state.investmentPeriod,
+          months: action.payload,
+        },
+      };
     }
     case 'onInterestRateChange': {
       return { ...state, annualInterest: action.payload };
     }
     case 'onCalculate': {
-      const data = calculateInterest(
+      const {
+        data,
+        startingAmount,
+        accrued_contributions,
+        accrued_interest,
+        balance,
+      } = calculateInterest(
         state.startingAmount.raw,
         state.monthlyContribution.raw,
-        state.yearsOfInvesting,
+        state.investmentPeriod.years * 12 + state.investmentPeriod.months,
         state.annualInterest
       );
 
       return {
         ...state,
         results: {
+          final: {
+            startingAmount: formatNumberWithCommas(startingAmount),
+            accrued_contributions: formatNumberWithCommas(
+              accrued_contributions
+            ),
+            accrued_interest: formatNumberWithCommas(accrued_interest),
+            balance: formatNumberWithCommas(balance),
+          },
           data: {
             ...data,
           },
@@ -108,7 +143,7 @@ function InterestProvider({ children }) {
     {
       startingAmount,
       monthlyContribution,
-      yearsOfInvesting,
+      investmentPeriod,
       annualInterest,
       results,
     },
@@ -120,7 +155,7 @@ function InterestProvider({ children }) {
       value={{
         startingAmount,
         monthlyContribution,
-        yearsOfInvesting,
+        investmentPeriod,
         annualInterest,
         results,
         dispatch,

@@ -10,7 +10,7 @@
 
 .inputs_container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: start;
     flex-wrap: wrap;
     gap: 1.5rem 2.5rem;
@@ -24,14 +24,14 @@
     flex-basis: 300px;
 }
 
-.multi_input:global(>.radio_children) {
+.multi_input:global(>.child) {
     padding-left: 1rem;
     flex-basis: auto;
 }
 
-.multi_input:global(>.radio_children label),
-.multi_input:global(>.radio_children >div>label),
-.multi_input:global(>.radio_children >div>span) {
+.multi_input:global(>.child label),
+.multi_input:global(>.child >div>label),
+.multi_input:global(>.child >div>span) {
     color: var(--text-secondary);
     font-size: var(--text-sm);
 }
@@ -41,6 +41,12 @@
     align-items: center;
     width: 100%;
     gap: max(.5rem, 2vw);
+}
+
+.annual_interest_container {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 250px;
 }
 
 .error_text {

@@ -23,18 +23,21 @@ function NavBar() {
             <div className={styles['nav_list']}>
               <NavLink
                 className={styles['nav_link']}
-                to="/compound-interest-calculator"
+                to="/financial_calculator/compound-interest-calculator"
               >
                 Compound Interest Calculator
               </NavLink>
               <NavLink
                 className={styles['nav_link']}
-                to="/savings-goal-calculator"
+                to="/financial_calculator/savings-goal-calculator"
               >
                 Savings Goal Calculator
               </NavLink>
-              <NavLink className={styles['nav_link']} to="/">
-                Mortgage Calculator
+              <NavLink
+                className={styles['nav_link']}
+                to="/financial_calculator/loan-calculator"
+              >
+                Loan Calculator
               </NavLink>
             </div>
           }

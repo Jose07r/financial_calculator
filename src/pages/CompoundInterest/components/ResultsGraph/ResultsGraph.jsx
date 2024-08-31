@@ -1,12 +1,14 @@
+import { useInterestContext } from '@/contexts/InterestContext/InterestContext';
+
 import Box from '@components/ui/Box/Box';
 import Graphs from '@pages/CompoundInterest/components/Graphs/Graphs';
 import Loader from '@components/ui/Loader/Loader';
 
 import styles from '@pages/CompoundInterest/components/ResultsGraph/ResultsGraph.module.css';
 
-function ResultsGraph({ isLoading, getContext }) {
+function ResultsGraph({ isLoading }) {
   let dataResults = null;
-  const { results } = getContext();
+  const { results } = useInterestContext();
   if (results) dataResults = results.data;
 
   return (

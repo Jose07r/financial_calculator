@@ -1,11 +1,12 @@
 import styles from '@components/ui/NumberInput/NumberInput.module.css';
 
 function NumberInput({
-  customClass,
+  customClass = '',
   inputLabel,
-  inputAdvice = '',
+  percentage = false,
   minValue,
   maxValue,
+  decimalAllowed = false,
   inputValue,
   dispatch,
   dispatchType,
@@ -24,6 +25,7 @@ function NumberInput({
       '7',
       '8',
       '9',
+      ...(decimalAllowed ? ['.'] : []),
     ]; //Allow this keys only
     if (!validKeys.includes(event.key)) {
       event.preventDefault(); // Prevent default action for invalid keys
@@ -34,7 +36,8 @@ function NumberInput({
     let inputValue = event.target.value;
 
     if (inputValue !== '') {
-      const numericValue = parseInt(inputValue, 10);
+      inputValue = parseFloat(inputValue).toFixed(2);
+      const numericValue = parseFloat(inputValue);
 
       if (numericValue > maxValue) {
         inputValue = maxValue;
@@ -47,22 +50,30 @@ function NumberInput({
   return (
     <div className={`${styles['input_container']} ${customClass}`}>
       <label className={styles['input_label']} htmlFor="number_input">
-        * {inputLabel} <span>&#40;max-{maxValue}&#41;</span>
+        * {inputLabel}{' '}
+        <span>
+          &#40;max-{maxValue}
+          {percentage && '%'}&#41;
+        </span>
       </label>
-      <input
-        className={styles['input']}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        onPaste={(e) => e.preventDefault()}
-        type="number"
-        id="number_input"
-        min={minValue}
-        max={maxValue}
-        inputMode="numeric"
-        value={inputValue}
-        placeholder="0"
-        required
-      />
+      <div>
+        <input
+          className={styles['input']}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          onPaste={(e) => e.preventDefault()}
+          type="number"
+          id="number_input"
+          min={minValue}
+          max={maxValue}
+          inputMode="numeric"
+          value={inputValue}
+          placeholder="0"
+          step={decimalAllowed ? 0.01 : 1}
+          required
+        />
+        {percentage && <span className="percentage_label">%</span>}
+      </div>
     </div>
   );
 }

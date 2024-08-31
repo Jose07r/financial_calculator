@@ -1,12 +1,14 @@
+import { useSavingsContext } from '@/contexts/SavingsContext/SavingsContext';
+
 import Box from '@components/ui/Box/Box';
 import Graphs from '@pages/SavingsGoal/components/Graphs/Graphs';
 import Loader from '@components/ui/Loader/Loader';
 
 import styles from '@pages/SavingsGoal/components/ResultsGraph/ResultsGraph.module.css';
 
-function ResultsGraph({ isLoading, getContext }) {
+function ResultsGraph({ isLoading }) {
   let dataResults = null;
-  const { results } = getContext();
+  const { results } = useSavingsContext();
   if (results) dataResults = results.data;
 
   return (

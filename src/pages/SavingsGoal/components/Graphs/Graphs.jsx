@@ -4,7 +4,7 @@ import BasicTable from '@components/BasicTable/BasicTable';
 
 import getChartData from '@pages/SavingsGoal/graphsData/getChartData';
 import getChartOptions from '@components/BarChart/chartOptions';
-import getTableColumns from '@pages/SavingsGoal/graphsData/getTableColumns';
+import columns from '@pages/SavingsGoal/graphsData/getTableColumns';
 
 import styles from '@pages/SavingsGoal/components/Graphs/Graphs.module.css';
 
@@ -59,7 +59,7 @@ function Graphs({ results }) {
       {graphType === 'barChart' ? (
         <BarChart chartData={chartData} chartOptions={chartOptions} />
       ) : (
-        <BasicTable data={data} columns={getTableColumns()} />
+        <BasicTable data={data} columns={columns} />
       )}
     </div>
   );

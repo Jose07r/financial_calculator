@@ -1,18 +1,27 @@
 .input_container {
+    --input-text-color: var(--color-secondary);
+    --label-text-color: var(--text-dark);
     display: flex;
     flex-direction: column;
     gap: .8rem;
+}
+
+.input_container:global(.child) {
+    --input-text-color: var(--text-secondary);
+    --label-text-color: var(--text-secondary);
     padding-left: 1rem;
 }
 
-.input_container:global(.radio_children) {
-    --color-secondary: var(--text-secondary)
-}
-
 .input_label {
-    color: var(--color-secondary);
+    color: var(--label-text-color);
     font-size: var(--text-sm);
     font-weight: 600;
+}
+
+:global(.percentage_label) {
+    color: var(--input-text-color);
+    font-weight: 600;
+    margin-left: .5rem;
 }
 
 .input_label>span {
@@ -29,7 +38,7 @@
 .input {
     appearance: none;
     background-color: var(--input-bg);
-    color: var(--color-secondary);
+    color: var(--input-text-color);
     font-size: var(--text-md);
     font-weight: 600;
     letter-spacing: 1.5px;

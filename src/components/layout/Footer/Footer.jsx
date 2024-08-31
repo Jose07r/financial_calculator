@@ -8,18 +8,26 @@ function Footer() {
   return (
     <footer className={styles['footer']}>
       <div className={styles['top_container']}>
-        <div className={styles['portfolio_link']}>
-          <b>See more projects at:</b>
-          <a href="/">https.//josemrangel.com</a>
-        </div>
         <div className={styles['social_media']}>
-          <a className={styles['social_link']} href="/">
+          <a
+            className={styles['social_link']}
+            href="https://www.linkedin.com/in/jose-miguel-rangel-8973a9277/"
+            target="_blank"
+          >
             <FaLinkedin />
           </a>
-          <a className={styles['social_link']} href="/">
+          <a
+            className={styles['social_link']}
+            href="https://www.instagram.com/miguee_rx_/"
+            target="_blank"
+          >
             <FaInstagram />
           </a>
-          <a className={styles['social_link']} href="/">
+          <a
+            className={styles['social_link']}
+            href="https://github.com/Jose07r"
+            target="_blank"
+          >
             <FaGithub />
           </a>
         </div>

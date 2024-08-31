@@ -27,7 +27,11 @@
 .dropdown_btn_text:global(>span) {
     display: flex;
     align-items: center;
-    gap: .25rem;
+    gap: .35rem;
+}
+
+.dropdown_btn_text>span>svg {
+    min-width: .8rem;
 }
 
 .toggle_icon {

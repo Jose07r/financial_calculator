@@ -1,8 +1,6 @@
 .btn {
     appearance: none;
     border: none;
-    background-color: var(--color-secondary);
-    color: var(--white);
     font-size: var(--text-sm);
     font-weight: 600;
     padding: .5rem 1rem;
@@ -10,10 +8,26 @@
     border-radius: 8px;
     cursor: pointer;
     box-shadow: inset 0 0 3px 3px transparent;
+}
+
+.btn:global(.primary) {
+    background-color: var(--color-secondary);
+    color: var(--white);
     transition: box-shadow .3s ease;
     margin-inline: auto;
 }
 
-.btn:hover {
+.btn:global(.primary):hover {
     box-shadow: inset 0 0 3px 3px #0b7da3;
+}
+
+.btn:global(.secondary) {
+    background-color: var(--color-primary);
+    color: var(--white);
+    align-self: flex-start;
+    transition: box-shadow .3s ease;
+}
+
+.btn:global(.secondary):hover {
+    box-shadow: inset 0 0 3px 3px rgb(40, 187, 170);
 }

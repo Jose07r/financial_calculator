@@ -82,6 +82,9 @@ function BasicTable({ data, columns }) {
           >
             &gt;&gt;
           </button>
+          <span className={styles['pagination_text']}>
+            Page {pagination.pageIndex + 1} of {table.getPageCount()}
+          </span>
         </div>
       </div>
     </div>

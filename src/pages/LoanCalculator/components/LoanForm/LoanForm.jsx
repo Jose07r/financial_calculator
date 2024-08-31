@@ -1,22 +1,15 @@
-import { useInterestContext } from '@/contexts/InterestContext/InterestContext';
+import { useLoanContext } from '@/contexts/LoanContext/LoanContext';
 import { useState, useEffect } from 'react';
 
 import Box from '@components/ui/Box/Box';
 import MoneyInput from '@components/ui/MoneyInput/MoneyInput';
 import NumberInput from '@components/ui/NumberInput/NumberInput';
-import RangeInput from '@components/ui/RangeInput/RangeInput';
 import Button from '@components/ui/Button/Button';
 
-import styles from '@pages/CompoundInterest/components/InterestForm/InterestForm.module.css';
+import styles from '@pages/LoanCalculator/components/LoanForm/LoanForm.module.css';
 
-function InterestForm({ setIsLoading }) {
-  const {
-    startingAmount,
-    monthlyContribution,
-    investmentPeriod,
-    annualInterest,
-    dispatch,
-  } = useInterestContext();
+function LoanForm({ setIsLoading }) {
+  const { loanAmount, loanTerm, annualInterest, dispatch } = useLoanContext();
 
   const [formError, setFormError] = useState(null);
 
@@ -34,71 +27,58 @@ function InterestForm({ setIsLoading }) {
 
   // Prevent from passing 0 to specific fields
   useEffect(() => {
-    if (startingAmount.raw === 0 && monthlyContribution.raw === 0) {
+    if (loanAmount.raw === 0) {
       setFormError({
-        message: '* Starting amount and Contribution cannot both be set to 0',
-        type: 'investmentAmount',
+        message: '* Please enter a loan amount',
+        type: 'loanAmount',
       });
-    } else if (investmentPeriod.years === 0 && investmentPeriod.months === 0) {
+    } else if (loanTerm.years === 0 && loanTerm.months === 0) {
       setFormError({
-        message: '* Please enter a valid time of investing.',
-        type: 'investmentPeriod',
+        message: '* Please enter a valid loan term.',
+        type: 'loanTerm',
       });
     }
 
     return () => setFormError(null);
-  }, [startingAmount, monthlyContribution, investmentPeriod]);
+  }, [loanAmount, loanTerm]);
 
   return (
     <Box customClass="form-box">
       <form onSubmit={handleSubmit} className={styles['form']}>
         <div className={styles['inputs_container']}>
           <MoneyInput
-            customClass={formError?.type === 'investmentAmount' ? 'error' : ''}
-            labelText="Starting amount"
-            inputValue={startingAmount.formattedValue}
+            customClass={formError?.type === 'loanAmount' ? 'error' : ''}
+            labelText="Loan amount"
+            inputValue={loanAmount.formattedValue}
             onChangeFn={(e) => {
               dispatch({
-                type: 'onStartingAmountChange',
+                type: 'onLoanAmountChange',
                 payload: e.target.value,
               });
             }}
           />
-          <MoneyInput
-            customClass={formError?.type === 'investmentAmount' ? 'error' : ''}
-            labelText="Monthly contribution"
-            inputValue={monthlyContribution.formattedValue}
-            onChangeFn={(e) => {
-              dispatch({
-                type: 'onMonthlyContributionChange',
-                payload: e.target.value,
-              });
-            }}
-          />
-          <div className={styles['investmentPeriod_container']}>
-            <span className={styles['investmentPeriod_label']}>
-              Time of investing
-            </span>
+          <div className={styles['loan_term_container']}>
+            <span className={styles['loan_term_label']}>Loan term</span>
             <div className={styles['number_input_container']}>
               <NumberInput
                 customClass={`child${
-                  formError?.type === 'investmentPeriod' ? ' error' : ''
+                  formError?.type === 'loanTerm' ? ' error' : ''
                 }`}
                 inputLabel="Years"
                 minValue={0}
-                maxValue={60}
-                inputValue={investmentPeriod.years}
+                maxValue={40}
+                inputValue={loanTerm.years}
                 dispatch={dispatch}
                 dispatchType="onYearsChange"
               />
               <NumberInput
                 customClass={`child${
-                  formError?.type === 'investmentPeriod' ? ' error' : ''
+                  formError?.type === 'loanTerm' ? ' error' : ''
                 }`}
                 inputLabel="Months"
                 minValue={0}
                 maxValue={12}
-                inputValue={investmentPeriod.months}
+                inputValue={loanTerm.months}
                 dispatch={dispatch}
                 dispatchType="onMonthsChange"
               />
@@ -107,11 +87,11 @@ function InterestForm({ setIsLoading }) {
           <div className={styles['annual_interest_container']}>
             <NumberInput
               inputLabel="Annual interest rate"
+              percentage={true}
               minValue={0}
               maxValue={100}
-              percentage={true}
-              inputValue={annualInterest}
               decimalAllowed={true}
+              inputValue={annualInterest}
               dispatch={dispatch}
               dispatchType="onInterestRateChange"
             />
@@ -126,4 +106,4 @@ function InterestForm({ setIsLoading }) {
   );
 }
 
-export default InterestForm;
+export default LoanForm;

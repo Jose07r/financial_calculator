@@ -1,9 +1,9 @@
 import { useState } from 'react';
+
 import Select from 'react-select';
 import selectStyles from '@pages/CompoundInterest/components/Graphs/selectInputStyles.js';
 import BarChart from '@components/BarChart/BarChart';
 import BasicTable from '@components/BasicTable/BasicTable';
-
 import getChartData from '@pages/CompoundInterest/graphsData/getChartData';
 import getChartOptions from '@components/BarChart/chartOptions';
 import getTableColumns from '@pages/CompoundInterest/graphsData/getTableColumns';

@@ -4,6 +4,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/financial_calculator/',
   plugins: [react()],
   resolve: {
     alias: [
@@ -12,10 +13,6 @@ export default defineConfig({
       {
         find: '@components',
         replacement: path.resolve(__dirname, './src/components'),
-      },
-      {
-        find: '@data',
-        replacement: path.resolve(__dirname, './src/assets/data'),
       },
       {
         find: '@images',
