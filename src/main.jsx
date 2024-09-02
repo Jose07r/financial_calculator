@@ -6,7 +6,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import './index.css';
-import ErrorPage from '@pages/ErrorPage/ErrorPage';
+import NotFound from '@pages/NotFound/NotFound';
 import CompoundInterest from '@pages/CompoundInterest/CompoundInterest';
 import SavingsGoal from '@pages/SavingsGoal/SavingsGoal';
 import LoanCalculator from '@pages/LoanCalculator/LoanCalculator';
@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       />
       <Route path="/savings-goal-calculator" element={<SavingsGoal />} />
       <Route path="/loan-calculator" element={<LoanCalculator />} />
-      <Route path="*" element={<ErrorPage />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   </Router>
 );

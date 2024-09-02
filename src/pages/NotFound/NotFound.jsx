@@ -1,4 +1,4 @@
-import { useRouteError, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import NavBar from '@components/layout/NavBar/NavBar';
 import Main from '@components/layout/Main/Main';
@@ -7,10 +7,9 @@ import Button from '@components/ui/Button/Button';
 
 import errorImage from '@/assets/images/error-image.svg';
 
-import styles from '@pages/ErrorPage/ErrorPage.module.css';
+import styles from '@pages/NotFound/NotFound.module.css';
 
-export default function ErrorPage() {
-  const error = useRouteError();
+export default function NotFound() {
   const navigate = useNavigate();
 
   return (
@@ -28,9 +27,9 @@ export default function ErrorPage() {
 
           <div className={styles['error_content']}>
             <div className={styles['error_message_container']}>
-              <h1>Oops! {error.status}</h1>
+              <h1>Oops! 404</h1>
               <p>Sorry, an unexpected error has occurred.</p>
-              <p>{error.statusText || error.message}</p>
+              <p>Not Found</p>
             </div>
             <Button
               btnText="Go back"
