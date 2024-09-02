@@ -1,7 +1,6 @@
 .results_container {
     flex-grow: 1;
     flex-basis: 100%;
-    margin: .5rem 0;
     width: 100%;
 }
 

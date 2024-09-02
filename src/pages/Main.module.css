@@ -61,6 +61,7 @@
     max-width: 100%;
     gap: 2rem;
     padding: min(2vw, 1.5rem);
+    padding-bottom: 0;
 }
 
 .content_bottom {

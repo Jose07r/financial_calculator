@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     gap: min(1.5rem, 4vw);
+    padding: min(2rem, 5vw) min(1.5rem, 5vw);
     width: 100%;
     max-height: fit-content;
 }

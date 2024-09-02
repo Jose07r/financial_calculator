@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Box from '@components/ui/Box/Box';
 import MoneyInput from '@components/ui/MoneyInput/MoneyInput';
 import NumberInput from '@components/ui/NumberInput/NumberInput';
-import RangeInput from '@components/ui/RangeInput/RangeInput';
 import Button from '@components/ui/Button/Button';
 
 import styles from '@pages/CompoundInterest/components/InterestForm/InterestForm.module.css';

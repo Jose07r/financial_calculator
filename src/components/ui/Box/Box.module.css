@@ -3,13 +3,13 @@
     align-items: center;
     justify-content: center;
     background-color: var(--white);
-    padding: min(2rem, 5vw) min(1.5rem, 5vw);
     box-shadow: var(--box-shadow);
     flex-grow: 1;
     opacity: 0;
     transform: translateX(-10%);
     border-radius: 1rem;
     animation: .6s ease 400ms forwards slidein;
+    overflow: hidden;
 }
 
 @keyframes slidein {
@@ -31,11 +31,5 @@
 
 .box:global(.graphs-box) {
     flex-basis: 600px;
-    padding: 3rem min(2rem, 5vw) 0 min(2rem, 5vw);
-    overflow: hidden;
-}
-
-.box:global(.amortization_table) {
-    flex-basis: 600px;
-    padding: min(2rem, 5vw);
+    flex-grow: 2;
 }

@@ -10,7 +10,7 @@ function ResultsGraph({ isLoading }) {
   const { results } = useLoanContext();
 
   return (
-    <Box customClass="amortization_table">
+    <Box customClass="graphs-box">
       {isLoading ? (
         <Loader />
       ) : results ? (

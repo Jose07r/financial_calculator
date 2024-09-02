@@ -15,6 +15,7 @@ function MoneyInput({ customClass = '', labelText, inputValue, onChangeFn }) {
           className={styles.input}
           id="money-input"
           type="text"
+          inputMode="numeric"
           placeholder="0.00"
           value={inputValue}
           maxLength={10}

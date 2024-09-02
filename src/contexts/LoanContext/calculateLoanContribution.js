@@ -7,7 +7,8 @@ const calculateLoanContribution = (loanAmount, numOfPayments, interestRate) => {
   // Monthly payment formula
   const monthlyPayment =
     (loanAmount * monthlyInterestRate) /
-    (1 - Math.pow(1 + monthlyInterestRate, -numOfPayments));
+      (1 - Math.pow(1 + monthlyInterestRate, -numOfPayments)) ||
+    loanAmount / numOfPayments;
 
   const { month, year } = getMonthYear(startingDate, 0);
   const data = {
@@ -46,12 +47,9 @@ const calculateLoanContribution = (loanAmount, numOfPayments, interestRate) => {
     estimatedPayoff = `${month} ${year}`;
 
     if (!data[year]) {
-      data[year] = { rows: [], totals: {} };
-      data[year].totals = {
-        payment: 0,
-        principal: 0,
-        interest: 0,
-        remainingBalance: 0,
+      data[year] = {
+        rows: [],
+        totals: { payment: 0, principal: 0, interest: 0, remainingBalance: 0 },
       };
     }
 

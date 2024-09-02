@@ -4,6 +4,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: min(2rem, 5vw);
+    padding-bottom: 0;
     width: 100%;
 }
 

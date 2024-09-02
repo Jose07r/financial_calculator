@@ -28,8 +28,9 @@ function CompoundInterest() {
           <div className={styles['box_container']}>
             <InterestForm setIsLoading={setIsLoading} />
             <ResultsGraph isLoading={isLoading} />
+            <ResultsSummary isLoading={isLoading} />
           </div>
-          <ResultsSummary isLoading={isLoading} />
+
           <div className={styles['content_bottom']}>
             <h2>What is compound interest?</h2>
             <p>

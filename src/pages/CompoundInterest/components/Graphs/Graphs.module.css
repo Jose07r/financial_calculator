@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: min(3rem, 15vw) min(2rem, 5vw) 0 min(2rem, 5vw);
     width: 100%;
 }
 
@@ -17,7 +18,8 @@
 
 .controls_container {
     position: absolute;
-    top: -2.5rem;
+    top: .75rem;
+    right: .75rem;
     display: flex;
     justify-content: end;
     align-items: center;
